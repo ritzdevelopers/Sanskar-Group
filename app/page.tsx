@@ -28,7 +28,7 @@ const quattrocento = Quattrocento({
 
 export default function Home() {
   return (
-    <main className={`${poppins.className} ${lato.variable} ${quattrocento.variable}`}>
+    <main className={`${poppins.className} ${lato.variable} ${quattrocento.variable} w-full min-w-0 overflow-x-hidden`}>
       <HomePageWithGateway>
         <OverviewSection />
         <ProjectsSection />

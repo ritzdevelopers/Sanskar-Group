@@ -1,6 +1,13 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
+import { useScrollReveal } from "../common/useScrollReveal";
 
 export function PressReleasesSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useScrollReveal(sectionRef);
+
   const pressReleases = [
     {
       id: 1,
@@ -20,13 +27,16 @@ export function PressReleasesSection() {
   ];
 
   return (
-    <section className="bg-[#FAFAFA] py-[100px] px-6">
-      <div className="mx-auto max-w-[1280px]">
-        <h2 className="mb-[60px] text-center font-quattrocento text-[36px] font-normal uppercase leading-[100%] tracking-[0%] text-[#1A1A1A]">
+    <section ref={sectionRef} className="bg-[#FAFAFA] px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-24 lg:py-[100px] xl:px-10 2xl:px-16">
+      <div className="mx-auto w-full max-w-[1280px] xl:max-w-[1320px]">
+        <h2
+          data-scroll-reveal
+          className="mb-10 text-center font-quattrocento text-[28px] font-normal uppercase leading-[100%] tracking-[0%] text-[#1A1A1A] sm:mb-12 sm:text-[32px] md:mb-14 md:text-[34px] lg:mb-[60px] lg:text-[36px]"
+        >
           PRESS RELEASES
         </h2>
-        
-        <div className="grid grid-cols-1 gap-[32px] md:grid-cols-3">
+
+        <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-[32px]">
           {pressReleases.map((release) => (
             <div key={release.id} className="flex flex-col gap-6">
               <div className="relative aspect-[1.5] w-full overflow-hidden">
@@ -37,7 +47,10 @@ export function PressReleasesSection() {
                   className="object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
-              <p className="font-lato text-[16px] font-normal leading-[24px] tracking-[0.5px] text-[#555555]">
+              <p
+                data-scroll-reveal
+                className="font-lato text-[16px] font-normal leading-[24px] tracking-[0.5px] text-[#555555]"
+              >
                 {release.description}
               </p>
             </div>

@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Lato, Quattrocento } from "next/font/google";
+import { useScrollReveal } from "../common/useScrollReveal";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -34,29 +35,34 @@ const slides = [
 
 export function ProjectsSection() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  useScrollReveal(sectionRef);
 
   const nextSlide = () => {
     setActiveSlide((prev) => (prev + 1) % slides.length);
   };
 
   return (
-    <section className="bg-[#F8F8F8]">
-      <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col items-center px-6 py-12">
-        <div className="flex h-[229px] w-full max-w-[1004px] flex-col items-center gap-[27px] text-center">
+    <section ref={sectionRef} className="bg-[#F8F8F8]">
+      <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col items-center px-4 py-10 sm:px-6 sm:py-12 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+        <div className="flex w-full max-w-[1004px] flex-col items-center gap-5 text-center sm:gap-6 md:gap-[27px]">
           <p
-            className={`${lato.className} text-[18px] font-normal uppercase leading-[100%] tracking-[0.05em] text-[#111111]`}
+            data-scroll-reveal
+            className={`${lato.className} text-[15px] font-normal uppercase leading-[100%] tracking-[0.05em] text-[#111111] sm:text-[16px] md:text-[18px]`}
           >
             Our Projects
           </p>
 
           <h2
-            className={`${quattrocento.className} max-w-[740px] text-[36px] font-normal uppercase leading-[46px] text-[#111111]`}
+            data-scroll-reveal
+            className={`${quattrocento.className} max-w-[740px] text-[26px] font-normal uppercase leading-[1.2] text-[#111111] sm:text-[30px] md:text-[34px] lg:text-[36px] lg:leading-[46px]`}
           >
             Building the Perfect Place for Your Life to Grow.
           </h2>
 
           <p
-            className={`${lato.className} text-[16px] font-normal leading-6 text-[#00000099]`}
+            data-scroll-reveal
+            className={`${lato.className} max-w-[90%] text-[14px] font-normal leading-6 text-[#00000099] sm:max-w-none sm:text-[15px] md:text-[16px]`}
           >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -67,8 +73,8 @@ export function ProjectsSection() {
           </p>
         </div>
 
-        <div className="mt-8 h-[611px] w-full max-w-[1284px]">
-          <div className="relative h-[611px] overflow-hidden">
+        <div className="mt-6 w-full max-w-[1284px] sm:mt-8">
+          <div className="relative aspect-[4/3] min-h-[220px] w-full overflow-hidden sm:aspect-[16/10] md:aspect-[5/3] md:min-h-[360px] lg:aspect-auto lg:h-[520px] xl:h-[580px] 2xl:h-[611px]">
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
@@ -86,9 +92,9 @@ export function ProjectsSection() {
                   sizes="(max-width: 1284px) 100vw, 1284px"
                 />
 
-                <div className="absolute left-[37px] top-[44px] flex h-[40px] w-[167px] items-center justify-center border border-white/25 bg-[rgba(0,0,0,0.10)] backdrop-blur-md">
+                <div className="absolute left-3 top-3 flex h-9 max-w-[min(167px,70%)] items-center justify-center border border-white/25 bg-[rgba(0,0,0,0.10)] px-3 backdrop-blur-md sm:left-6 sm:top-6 sm:h-[40px] md:left-[37px] md:top-[44px] md:w-[167px]">
                   <span
-                    className={`${quattrocento.className} text-[18px] font-normal leading-none text-white`}
+                    className={`${quattrocento.className} truncate text-[14px] font-normal leading-none text-white sm:text-[16px] md:text-[18px]`}
                   >
                     {slide.title}
                   </span>
@@ -100,7 +106,7 @@ export function ProjectsSection() {
               type="button"
               aria-label="Next project"
               onClick={nextSlide}
-              className="absolute right-8 top-8 flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl text-[#111111]"
+              className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg text-[#111111] sm:right-6 sm:top-6 sm:h-11 sm:w-11 sm:text-xl md:right-8 md:top-8"
             >
               ↗
             </button>

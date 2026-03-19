@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
 import { Lato, Quattrocento } from "next/font/google";
+import { useScrollReveal } from "../common/useScrollReveal";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -12,11 +16,17 @@ const quattrocento = Quattrocento({
 });
 
 export function StorySection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useScrollReveal(sectionRef);
+
   return (
-    <section className="bg-[radial-gradient(#ebebeb_1px,transparent_1px)] [background-size:16px_16px] py-14 lg:py-30">
-      <div className="mx-auto flex w-full max-w-[1320px] flex-col gap-14 px-6 sm:px-10 lg:gap-16 lg:px-12">
-        <div className="flex flex-col gap-11 lg:flex-row lg:items-center lg:justify-center">
-          <div className="relative h-[260px] w-full overflow-hidden sm:h-[360px] lg:h-[450px] lg:w-[641px]">
+    <section
+      ref={sectionRef}
+      className="bg-[radial-gradient(#ebebeb_1px,transparent_1px)] [background-size:12px_12px] py-10 sm:py-12 md:py-14 md:[background-size:16px_16px] lg:py-20 xl:py-24 2xl:py-28"
+    >
+      <div className="mx-auto flex w-full max-w-[1320px] flex-col gap-10 px-4 sm:gap-12 sm:px-6 md:gap-14 md:px-8 lg:gap-16 lg:px-10 xl:px-12 2xl:px-16">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-center lg:gap-10 xl:gap-12">
+          <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] md:max-h-[420px] lg:aspect-auto lg:h-[450px] lg:max-h-none lg:w-[min(100%,641px)] lg:shrink-0">
             <Image
               src="/assets/creating_communities.png"
               alt="Building trust visual"
@@ -27,14 +37,16 @@ export function StorySection() {
             />
           </div>
 
-          <div className="flex h-auto w-full flex-col gap-[18px] lg:h-[167px] lg:w-[507px]">
+          <div className="flex h-auto w-full flex-col items-center gap-4 text-center sm:gap-[18px] lg:max-w-[507px] lg:items-start lg:justify-center lg:text-left">
             <h3
-              className={`${quattrocento.className} text-[26px] font-normal uppercase leading-[1.08] tracking-[0.01em] text-[#202020]`}
+              data-scroll-reveal
+              className={`${quattrocento.className} text-[22px] font-normal uppercase leading-[1.08] tracking-[0.01em] text-[#202020] sm:text-[24px] md:text-[26px]`}
             >
               Building Trust, Creating Homes
             </h3>
             <p
-              className={`${lato.className} text-[16px] font-normal leading-[1.45] text-[#555555] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden`}
+              data-scroll-reveal
+              className={`${lato.className} text-[14px] font-normal leading-[1.5] text-[#555555] sm:text-[15px] md:text-[16px] md:leading-[1.45] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4] overflow-hidden md:[-webkit-line-clamp:3]`}
             >
               Our journey began with a simple vision - to create spaces where
               people can truly feel at home. With a passion for quality
@@ -42,8 +54,9 @@ export function StorySection() {
               living.
             </p>
             <button
+              data-scroll-reveal
               type="button"
-              className={`${lato.className} inline-flex w-fit items-center gap-2 text-[20px] font-bold uppercase leading-none text-[#3A3A3A]`}
+              className={`${lato.className} mx-auto inline-flex w-fit items-center gap-2 text-[17px] font-bold uppercase leading-none text-[#3A3A3A] sm:text-[18px] md:text-[20px] lg:mx-0`}
             >
               <span className="border-b border-[#3A3A3A] pb-1">Our Story</span>
               <span aria-hidden>›</span>
@@ -51,30 +64,33 @@ export function StorySection() {
           </div>
         </div>
 
-        <div className="flex flex-col-reverse gap-11 lg:flex-row lg:items-center lg:justify-center">
-          <div className="flex h-auto w-full flex-col gap-[18px] lg:h-[167px] lg:w-[507px]">
+        <div className="flex flex-col-reverse gap-8 lg:flex-row lg:items-center lg:justify-center lg:gap-10 xl:gap-12">
+          <div className="flex h-auto w-full flex-col items-center gap-4 text-center sm:gap-[18px] lg:max-w-[507px] lg:items-start lg:justify-center lg:text-left">
             <h3
-              className={`${quattrocento.className} text-[26px] font-normal uppercase leading-[1.08] tracking-[0.01em] text-[#202020]`}
+              data-scroll-reveal
+              className={`${quattrocento.className} text-[22px] font-normal uppercase leading-[1.08] tracking-[0.01em] text-[#202020] sm:text-[24px] md:text-[26px]`}
             >
               Creating Communities That Last
             </h3>
             <p
-              className={`${lato.className} text-[16px] font-normal leading-[1.45] text-[#555555] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden`}
+              data-scroll-reveal
+              className={`${lato.className} text-[14px] font-normal leading-[1.5] text-[#555555] sm:text-[15px] md:text-[16px] md:leading-[1.45] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4] overflow-hidden md:[-webkit-line-clamp:3]`}
             >
               Our impact goes beyond building properties - we focus on shaping
               vibrant communities and improving lifestyles. Through our
               developments, we have helped many families find their dream home.
             </p>
             <button
+              data-scroll-reveal
               type="button"
-              className={`${lato.className} inline-flex w-fit items-center gap-2 text-[20px] font-bold uppercase leading-none text-[#3A3A3A]`}
+              className={`${lato.className} mx-auto inline-flex w-fit items-center gap-2 text-[17px] font-bold uppercase leading-none text-[#3A3A3A] sm:text-[18px] md:text-[20px] lg:mx-0`}
             >
               <span className="border-b border-[#3A3A3A] pb-1">Our Impact</span>
               <span aria-hidden>›</span>
             </button>
           </div>
 
-          <div className="relative h-[260px] w-full overflow-hidden sm:h-[360px] lg:h-[450px] lg:w-[641px]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] md:max-h-[420px] lg:aspect-auto lg:h-[450px] lg:max-h-none lg:w-[min(100%,641px)] lg:shrink-0">
             <Image
               src="/assets/building_trust.png"
               alt="Creating communities visual"

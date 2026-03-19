@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useScrollReveal } from "../common/useScrollReveal";
 import { Lato, Quattrocento } from "next/font/google";
 
 const lato = Lato({
@@ -90,37 +91,48 @@ const testimonialSlides: Testimonial[][] = [
 
 export function TestimonialsSection() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  useScrollReveal(sectionRef);
 
   return (
-    <section className="bg-[#FFFFFF] py-14">
-      <div className="mx-auto w-full max-w-[1440px] px-6 sm:px-10 lg:px-12">
-        <p className={`${lato.className} text-center text-[18px] font-normal uppercase tracking-[0.08em] text-[#111111]`}>
+    <section ref={sectionRef} className="bg-[#FFFFFF] py-10 sm:py-12 md:py-14">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+        <p
+          data-scroll-reveal
+          className={`${lato.className} text-center text-[15px] font-normal uppercase tracking-[0.08em] text-[#111111] sm:text-[16px] md:text-[18px]`}
+        >
           Testimonials
         </p>
         <h2
-          className={`${quattrocento.className} mt-3 text-center text-[34px] font-normal uppercase leading-[1.2] text-[#111111] lg:text-[36px]`}
+          data-scroll-reveal
+          className={`${quattrocento.className} mt-2 text-center text-[26px] font-normal uppercase leading-[1.2] text-[#111111] sm:mt-3 sm:text-[30px] md:text-[34px] lg:text-[36px]`}
         >
           What Does Our Customer Say?
         </h2>
 
-        <div className="relative mt-10 lg:pr-12">
-          <div className="h-[380px] overflow-hidden py-4">
+        <div data-scroll-reveal className="relative mt-8 sm:mt-10 lg:pr-12">
+          <div className="min-h-[320px] overflow-hidden py-3 sm:min-h-[360px] sm:py-4 md:min-h-[380px] lg:h-[380px]">
             <div
               className="h-full transition-transform duration-500 ease-out"
               style={{ transform: `translateY(-${activeSlide * 100}%)` }}
             >
               {testimonialSlides.map((slide, slideIndex) => (
-                <div key={slideIndex} className="flex h-full gap-3 pb-8 justify-center lg:gap-[60px]">
+                <div
+                  key={slideIndex}
+                  className="flex h-full flex-col items-stretch justify-start gap-4 px-1 pb-6 sm:px-0 md:flex-row md:flex-wrap md:justify-center md:gap-6 lg:flex-nowrap lg:gap-[60px]"
+                >
                   {slide.map((item) => (
                     <div
                       key={item.id}
-                      className="flex h-[314px] w-[548px] flex-col items-center rounded-[6px] bg-white px-6 text-center shadow-[0px_4px_20px_rgba(0,0,0,0.08)] lg:px-10 opacity-100"
+                      className="flex min-h-[280px] w-full max-w-[548px] flex-col items-center rounded-[6px] bg-white px-5 py-6 text-center shadow-[0px_4px_20px_rgba(0,0,0,0.08)] sm:min-h-[300px] sm:flex-1 sm:px-6 sm:py-7 md:px-8 lg:h-[314px] lg:min-h-0 lg:w-[min(100%,548px)] lg:flex-none lg:px-10"
                     >
-                      <div className="relative mt-[0px] h-[120px] w-[120px] overflow-hidden rounded-full">
-                        <Image src={item.image} alt={item.name} fill className="object-cover" />
+                      <div className="relative h-[88px] w-[88px] shrink-0 overflow-hidden rounded-full sm:h-[100px] sm:w-[100px] md:h-[120px] md:w-[120px]">
+                        <Image src={item.image} alt={item.name} fill className="object-cover" sizes="120px" />
                       </div>
-                      <h3 className={`${quattrocento.className} mt-0 text-[18px] font-bold text-[#111111]`}>{item.name}</h3>
-                      <p className={`${lato.className} mt-6 max-w-[387px] text-[16px] leading-[1.55] text-[#5A5A5A]`}>
+                      <h3 className={`${quattrocento.className} mt-3 text-[16px] font-bold text-[#111111] sm:text-[17px] md:text-[18px]`}>
+                        {item.name}
+                      </h3>
+                      <p className={`${lato.className} mt-4 max-w-[387px] text-[14px] leading-[1.55] text-[#5A5A5A] sm:mt-5 sm:text-[15px] md:mt-6 md:text-[16px]`}>
                         {item.quote}
                       </p>
                     </div>
@@ -130,7 +142,7 @@ export function TestimonialsSection() {
             </div>
           </div>
 
-          <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-2 lg:flex">
+          <div className="mt-4 flex flex-row flex-wrap items-center justify-center gap-2 sm:mt-6 lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:-translate-y-1/2 lg:flex-col lg:items-center lg:gap-2">
             {testimonialSlides.map((_, index) => (
               <button
                 key={index}

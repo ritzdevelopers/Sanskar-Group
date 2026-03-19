@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useScrollReveal } from "../common/useScrollReveal";
 import { Lato, Quattrocento } from "next/font/google";
 
 const lato = Lato({
@@ -46,6 +47,8 @@ const showcaseSlides = [
 
 export function ProjectShowcaseSliderSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  useScrollReveal(sectionRef);
   const activeSlide = showcaseSlides[activeIndex];
 
   const goPrev = () => {
@@ -57,28 +60,28 @@ export function ProjectShowcaseSliderSection() {
   };
 
   return (
-    <section className="h-[775px] bg-white">
-      <div className="relative mx-auto h-full w-full max-w-[1440px]">
-        <div className="flex items-center justify-end gap-3 px-6 py-4 sm:px-10 lg:px-12">
+    <section ref={sectionRef} className="bg-white pb-10 lg:h-[775px] lg:pb-0">
+      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col px-4 sm:px-6 md:px-8 lg:h-full lg:px-10 xl:px-12 2xl:px-16">
+        <div className="flex shrink-0 items-center justify-end gap-2 py-3 sm:gap-3 sm:py-4">
           <button
             type="button"
             aria-label="Previous slide"
             onClick={goPrev}
-            className="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-[#E2E2E2] bg-[#EDEDED]"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#E2E2E2] bg-[#EDEDED] sm:h-[52px] sm:w-[52px]"
           >
-            <Image src="/assets/left_arrow.svg" alt="" width={13} height={21} />
+            <Image src="/assets/left_arrow.svg" alt="" width={13} height={21} className="scale-90 sm:scale-100" />
           </button>
           <button
             type="button"
             aria-label="Next slide"
             onClick={goNext}
-            className="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-[#E2E2E2] bg-[#EDEDED]"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#E2E2E2] bg-[#EDEDED] sm:h-[52px] sm:w-[52px]"
           >
-            <Image src="/assets/right_arrow.svg" alt="" width={13} height={21} />
+            <Image src="/assets/right_arrow.svg" alt="" width={13} height={21} className="scale-90 sm:scale-100" />
           </button>
         </div>
 
-        <div className="relative h-[691px] overflow-hidden">
+        <div className="relative min-h-[260px] w-full flex-1 overflow-hidden sm:min-h-[340px] md:min-h-[420px] lg:min-h-0 lg:h-[691px] lg:flex-none">
           {showcaseSlides.map((slide, index) => (
             <div
               key={slide.id}
@@ -93,48 +96,68 @@ export function ProjectShowcaseSliderSection() {
                 className="object-cover"
                 quality={100}
                 priority={index === 0}
-                sizes="(max-width: 1440px) 100vw, 1440px"
+                sizes="(max-width: 1024px) 100vw, 1440px"
               />
             </div>
           ))}
 
-
-
-          <div className="absolute left-6 top-[26%] z-10 -translate-y-1/2 sm:left-10 lg:left-16">
-            <h3 className={`${quattrocento.className} text-[36px] font-bold leading-[100%] text-white align-middle tracking-[0%]`}>
+          <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/75 via-black/30 to-transparent px-4 pb-5 pt-20 sm:px-6 sm:pb-6 sm:pt-24 md:pt-28 lg:inset-x-auto lg:bottom-auto lg:left-6 lg:right-auto lg:top-[26%] lg:block lg:-translate-y-1/2 lg:bg-transparent lg:bg-none lg:px-0 lg:pb-0 lg:pt-0 xl:left-10 2xl:left-16">
+            <h3
+              data-scroll-reveal
+              className={`${quattrocento.className} text-center text-[22px] font-bold leading-[1.15] text-white sm:text-[26px] md:text-[30px] lg:text-left lg:text-[34px] lg:leading-[100%] xl:text-[36px]`}
+            >
               {activeSlide.headline}
             </h3>
-            <p className={`${lato.className} mt-2 text-[24px] font-normal leading-[100%] text-white tracking-[0%]`}>
+            <p
+              data-scroll-reveal
+              className={`${lato.className} mt-2 text-center text-[16px] font-normal leading-snug text-white/95 sm:text-[18px] md:text-[20px] lg:text-left lg:text-[24px] lg:leading-[100%]`}
+            >
               {activeSlide.subtext}
             </p>
           </div>
-
         </div>
 
-        <div className="absolute left-1/2 top-[81px] z-20 flex h-auto w-[320px] -translate-x-1/2 flex-col gap-[10px] rounded-[10px] bg-[#F4F4F4] px-6 py-8 sm:w-[380px] lg:left-[858px] lg:h-[613px] lg:w-[448px] lg:translate-x-0 lg:px-[32px] lg:py-[71px] mt-[50px]">
-          <p className={`${lato.className} text-center text-[18px] font-normal leading-none text-[#2F2F2F]`}>
+        <div className="relative z-20 mx-auto mt-4 flex w-full max-w-[448px] flex-col gap-3 rounded-[10px] bg-[#F4F4F4] px-5 py-6 sm:mt-5 sm:gap-[10px] sm:px-6 sm:py-8 lg:absolute lg:left-auto lg:right-6 lg:top-[81px] lg:mt-0 lg:h-auto lg:min-h-[560px] lg:w-[min(calc(100%-3rem),448px)] lg:px-8 lg:py-12 xl:right-10 xl:min-h-[613px] xl:py-[71px] 2xl:right-12">
+          <p
+            data-scroll-reveal
+            className={`${lato.className} text-center text-[16px] font-normal leading-none text-[#2F2F2F] sm:text-[17px] md:text-[18px]`}
+          >
             {String(activeIndex + 1).padStart(2, "0")} - {String(showcaseSlides.length).padStart(2, "0")}
           </p>
-          <h4 className={`${quattrocento.className} text-center text-[24px] font-normal uppercase leading-[1.1] text-[#1A1A1A] lg:text-[24px]`}>
+          <h4
+            data-scroll-reveal
+            className={`${quattrocento.className} text-center text-[20px] font-normal uppercase leading-[1.1] text-[#1A1A1A] sm:text-[22px] md:text-[24px]`}
+          >
             {activeSlide.projectName}
           </h4>
 
-          <div className="relative h-[200px] w-full overflow-hidden">
-            <Image src={activeSlide.image} alt={activeSlide.projectName} fill className="object-cover" quality={100} />
+          <div className="relative aspect-[16/10] w-full overflow-hidden sm:max-h-[240px] sm:aspect-auto sm:h-[200px] md:max-h-none">
+            <Image
+              src={activeSlide.image}
+              alt={activeSlide.projectName}
+              fill
+              className="object-cover"
+              quality={100}
+              sizes="(max-width:1024px) 90vw, 448px"
+            />
           </div>
 
-          <p className={`${lato.className} text-center text-[16px] leading-[1.5] text-[#555555]`}>
+          <p
+            data-scroll-reveal
+            className={`${lato.className} text-center text-[14px] leading-[1.5] text-[#555555] sm:text-[15px] md:text-[16px]`}
+          >
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry&apos;s,Lorem Ipsum is
             simply dummy text.
           </p>
 
           <button
+            data-scroll-reveal
             type="button"
-            className="mx-auto flex h-[52px] w-[52px] items-center justify-center rounded-full border border-[#8C8C8C]"
+            className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-[#8C8C8C] sm:h-[52px] sm:w-[52px]"
             aria-label="Open project"
           >
-            <Image src="/assets/diagonal_arrow.png" alt="" width={20} height={20} className="h-[20px] w-[20px]" />
+            <Image src="/assets/diagonal_arrow.png" alt="" width={20} height={20} className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px]" />
           </button>
         </div>
       </div>

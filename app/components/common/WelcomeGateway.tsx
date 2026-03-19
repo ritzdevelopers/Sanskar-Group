@@ -108,33 +108,33 @@ export function WelcomeGateway({ onComplete }: WelcomeGatewayProps) {
   if (!isVisible) return null;
 
   return (
-    <div ref={overlayRef} className="fixed inset-0 z-[120] flex items-center justify-center bg-black">
-      <div className="flex flex-col items-center gap-6 px-6 text-center">
-        <div ref={logoRef}>
+    <div ref={overlayRef} className="fixed inset-0 z-[120] flex items-center justify-center bg-black px-4 sm:px-6 md:px-8">
+      <div className="flex w-full max-w-[min(100%,520px)] flex-col items-center gap-4 text-center sm:max-w-none sm:gap-6 md:gap-8">
+        <div ref={logoRef} className="w-full px-2">
           <Image
             src="/assets/sanskar_logo_white.png"
             alt="Sanskar Realty"
             width={520}
             height={158}
             priority
-            className="h-auto w-[320px] sm:w-[420px] lg:w-[520px]"
+            className="mx-auto h-auto w-full max-w-[260px] sm:max-w-[360px] md:max-w-[440px] lg:max-w-[520px] xl:max-w-[540px]"
           />
         </div>
 
         {/* Golden lines match full sentence width (invisible layer reserves width while typing) */}
-        <div className="grid w-max max-w-[min(100%,calc(100vw-3rem))] [grid-template-areas:'stack'] place-items-stretch">
+        <div className="grid w-full max-w-[min(100%,calc(100vw-2rem))] overflow-x-auto [grid-template-areas:'stack'] place-items-stretch sm:w-max sm:max-w-[min(100%,calc(100vw-3rem))] md:overflow-visible">
           <div
-            className="invisible pointer-events-none flex flex-col gap-3 [grid-area:stack]"
+            className="invisible pointer-events-none flex min-w-0 flex-col gap-3 [grid-area:stack]"
             aria-hidden
           >
             <span className="block h-px w-full shrink-0 bg-transparent" />
-            <p className="whitespace-nowrap text-center font-['Lato'] text-[12px] tracking-[0.18em] sm:text-[13px] lg:text-[14px]">
+            <p className="whitespace-nowrap text-center font-['Lato'] text-[10px] tracking-[0.12em] sm:text-[12px] sm:tracking-[0.18em] md:text-[13px] lg:text-[14px] xl:text-[15px]">
               {VENTURE_LINE}
               <span className="ml-1 inline-block h-[14px] w-[1px]" />
             </p>
             <span className="block h-px w-full shrink-0 bg-transparent" />
           </div>
-          <div className="flex flex-col gap-3 [grid-area:stack]">
+          <div className="flex min-w-0 flex-col gap-3 [grid-area:stack]">
             <span
               ref={topGoldRef}
               className="block h-px w-full origin-center bg-[#D4AF37] will-change-transform"
@@ -142,7 +142,7 @@ export function WelcomeGateway({ onComplete }: WelcomeGatewayProps) {
             />
             <p
               ref={lineRef}
-              className="whitespace-nowrap text-center font-['Lato'] text-[12px] tracking-[0.18em] text-white sm:text-[13px] lg:text-[14px]"
+              className="whitespace-nowrap text-center font-['Lato'] text-[10px] tracking-[0.12em] text-white sm:text-[12px] sm:tracking-[0.18em] md:text-[13px] lg:text-[14px] xl:text-[15px]"
             >
               {typedText}
               <span className="ml-1 inline-block h-[14px] w-[1px] animate-pulse bg-white align-[-2px]" />

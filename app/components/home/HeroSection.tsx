@@ -3,6 +3,7 @@
 import { gsap } from "gsap";
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { NavOverlay } from "../common/NavOverlay";
 
 type HeroSectionProps = {
   startIntroAnimation?: boolean;
@@ -14,6 +15,7 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
   const piecesContainerRef = useRef<HTMLDivElement | null>(null);
   const heroImageRef = useRef<HTMLDivElement | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const introRanRef = useRef(false);
 
   useLayoutEffect(() => {
@@ -144,15 +146,16 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
 
       <header className="fixed inset-x-0 top-0 z-50">
         <div
-          className={`w-full px-6 py-3 transition-all duration-300 sm:px-10 lg:px-12 ${
+          className={`w-full px-4 py-2.5 transition-all duration-300 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 ${
             isScrolled ? "bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)]" : "bg-transparent"
           }`}
         >
-          <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between">
+          <nav className="mx-auto flex w-full max-w-[1200px] xl:max-w-[1280px] 2xl:max-w-[1360px] items-center justify-between gap-3">
           <div
             ref={(el) => {
               navItemsRef.current[0] = el;
             }}
+            className="min-w-0 shrink"
           >
             <Image
               src="/assets/sanskar_logo.png"
@@ -161,20 +164,21 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
               height={50}
               priority
               quality={100}
-              className={`h-[50px] w-[153px] object-contain transition duration-300 ${
+              className={`h-9 w-auto max-w-[120px] object-contain transition duration-300 sm:h-10 sm:max-w-[140px] md:h-11 md:max-w-[153px] lg:h-[50px] ${
                 isScrolled ? "brightness-0" : ""
               }`}
             />
           </div>
-          <div className="flex items-center gap-6 sm:gap-10">
+          <div className="flex shrink-0 items-center gap-3 sm:gap-6 md:gap-8 lg:gap-10">
             <div
               ref={(el) => {
                 navItemsRef.current[1] = el;
               }}
+              className="hidden md:block"
             >
               <button
                 type="button"
-                className={`text-center text-[16px] font-medium leading-7 transition-colors duration-300 ${
+                className={`text-center text-sm font-medium leading-7 transition-colors duration-300 md:text-[15px] lg:text-[16px] ${
                   isScrolled ? "text-black" : "text-white"
                 }`}
               >
@@ -185,10 +189,11 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
               ref={(el) => {
                 navItemsRef.current[2] = el;
               }}
+              className="hidden md:block"
             >
               <button
                 type="button"
-                className={`text-center text-[16px] font-medium leading-7 transition-colors duration-300 ${
+                className={`text-center text-sm font-medium leading-7 transition-colors duration-300 md:text-[15px] lg:text-[16px] ${
                   isScrolled ? "text-black" : "text-white"
                 }`}
               >
@@ -203,6 +208,7 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
               <button
                 type="button"
                 aria-label="Open menu"
+                onClick={() => setMenuOpen(true)}
                 className="flex h-8 w-8 items-center justify-center"
               >
                 <Image
@@ -220,6 +226,8 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
           </nav>
         </div>
       </header>
+
+      <NavOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
     </section>
   );
 }

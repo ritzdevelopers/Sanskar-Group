@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
 import { Lato, Quattrocento } from "next/font/google";
+import { useScrollReveal } from "../common/useScrollReveal";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -30,34 +34,49 @@ const investCards = [
 ];
 
 export function WhyInvestSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useScrollReveal(sectionRef, { stagger: 0.1 });
+
   return (
-    <section className="bg-[#FFFFFF/95] py-16 lg:py-20">
-      <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-12">
-        <h2 className={`${quattrocento.className} text-[48px] font-normal leading-[1.1] text-[#111111] lg:text-[56px]`}>
+    <section ref={sectionRef} className="bg-[#FFFFFF/95] py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24">
+      <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+        <h2
+          data-scroll-reveal
+          className={`${quattrocento.className} text-center text-[32px] font-normal leading-[1.1] text-[#111111] sm:text-[38px] md:text-[44px] lg:text-left lg:text-[48px] xl:text-[52px] 2xl:text-[56px]`}
+        >
           Why Invest With Us
         </h2>
 
         <p
-          className={`${lato.className} mt-6 max-w-[1054px] text-[18px] font-normal leading-[1.75] text-[#4B4B4B] mx-auto`}
+          data-scroll-reveal
+          className={`${lato.className} mx-auto mt-4 max-w-[1054px] text-center text-[15px] font-normal leading-[1.65] text-[#4B4B4B] sm:mt-5 sm:text-[16px] md:mt-6 md:text-[17px] md:leading-[1.75] lg:text-left lg:text-[18px]`}
         >
           Noida has emerged as one of India&apos;s most progressive cities, driven by world-class infrastructure. With
           seamless metro networks, expressways, and the upcoming Jewar International Airport, the city is transforming
           into a global hub. Its rapid growth makes it a hotspot for business, lifestyle, and real estate investment.
         </p>
 
-        <div className="mt-10 flex flex-wrap items-start justify-center gap-5">
+        <div className="mt-8 grid grid-cols-1 justify-items-center gap-5 sm:mt-10 sm:grid-cols-2 sm:justify-items-stretch lg:grid-cols-3 lg:gap-6 xl:gap-8">
           {investCards.map((card) => (
             <article
               key={card.title}
-              className="h-[384px] w-[384px] min-w-[384px] shrink-0 snap-start rounded-2xl border border-[#E7E7E7] bg-[#FFFFFF] p-6"
+              className="flex h-full w-full max-w-[384px] flex-col items-center rounded-2xl border border-[#E7E7E7] bg-[#FFFFFF] p-5 text-center sm:max-w-none sm:p-6 lg:items-stretch lg:text-left"
             >
-              <h3 className={`${lato.className} text-[22px] font-semibold leading-[1.25] text-[#222222]`}>{card.title}</h3>
-              <p className={`${lato.className} mt-3 max-w-[288px] text-[16px] font-normal leading-[1.45] text-[#626262]`}>
+              <h3
+                data-scroll-reveal
+                className={`${lato.className} text-lg font-semibold leading-[1.25] text-[#222222] sm:text-xl md:text-[22px]`}
+              >
+                {card.title}
+              </h3>
+              <p
+                data-scroll-reveal
+                className={`${lato.className} mt-2 max-w-none text-[14px] font-normal leading-[1.45] text-[#626262] sm:mt-3 sm:text-[15px] md:max-w-[288px] md:text-[16px]`}
+              >
                 {card.description}
               </p>
 
-              <div className="relative mt-5 h-[174px] w-full overflow-hidden w-[333px]">
-                <Image src={card.image} alt={card.title} fill className="object-cover" quality={100} />
+              <div className="relative mt-4 aspect-[333/174] w-full overflow-hidden sm:mt-5">
+                <Image src={card.image} alt={card.title} fill className="object-cover" quality={100} sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 384px" />
               </div>
             </article>
           ))}

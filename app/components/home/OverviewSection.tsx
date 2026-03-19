@@ -1,4 +1,9 @@
+"use client";
+
 import { Lato, Quattrocento } from "next/font/google";
+import { useRef, useState, useCallback } from "react";
+import { gsap } from "gsap";
+import { useScrollReveal } from "../common/useScrollReveal";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -11,10 +16,42 @@ const quattrocento = Quattrocento({
 });
 
 export function OverviewSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const fillRef = useRef<HTMLSpanElement>(null);
+  const [hoverOrigin, setHoverOrigin] = useState<{ x: number; y: number } | null>(null);
+
+  useScrollReveal(sectionRef);
+
+  const handleMouseEnter = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      const btn = e.currentTarget;
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      setHoverOrigin({ x, y });
+
+      const fill = fillRef.current;
+      if (fill) {
+        gsap.set(fill, { left: x, top: y, scale: 0, xPercent: -50, yPercent: -50 });
+        gsap.to(fill, { scale: 2.5, duration: 0.45, ease: "power2.out" });
+      }
+    },
+    []
+  );
+
+  const handleMouseLeave = useCallback(() => {
+    const fill = fillRef.current;
+    if (fill) {
+      gsap.to(fill, { scale: 0, duration: 0.35, ease: "power2.in", onComplete: () => setHoverOrigin(null) });
+    } else {
+      setHoverOrigin(null);
+    }
+  }, []);
+
   return (
-    <section className="relative overflow-x-hidden bg-white pt-[12px]">
-      <div className="pointer-events-none absolute inset-0 hidden lg:block">
-        <div className="absolute left-1/2 top-0 h-[551px] w-[1440px] -translate-x-1/2">
+    <section ref={sectionRef} className="relative overflow-x-hidden bg-white pt-2 sm:pt-3">
+      <div className="pointer-events-none absolute inset-0 hidden xl:block">
+        <div className="absolute left-1/2 top-0 h-[551px] w-full max-w-[1440px] -translate-x-1/2 2xl:max-w-[1600px]">
           <span className="absolute left-[429px] top-0 h-[551px] w-px bg-[#F1F1F1]" />
           <span className="absolute left-[643px] top-0 h-[551px] w-px bg-[#F1F1F1]" />
           <span className="absolute left-[857px] top-0 h-[551px] w-px bg-[#F1F1F1]" />
@@ -22,28 +59,50 @@ export function OverviewSection() {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1268px] flex-col gap-[35px] px-6 py-[56px] sm:px-10 lg:h-[551px] lg:px-0">
-        <p className={`${lato.className} text-[16px] font-normal leading-7 text-[#111111] uppercase`}>
+      <div className="relative z-10 mx-auto flex w-full max-w-[1268px] flex-col items-center gap-6 px-4 py-10 text-center sm:gap-8 sm:px-6 sm:py-12 md:gap-9 md:px-8 md:py-14 lg:items-start lg:gap-[35px] lg:px-10 lg:py-[56px] lg:text-left xl:min-h-[551px] xl:justify-center xl:px-12 2xl:max-w-[1320px] 2xl:px-16">
+        <p
+          data-scroll-reveal
+          className={`${lato.className} w-full text-sm font-normal leading-7 text-[#111111] uppercase sm:text-[15px] md:text-[16px]`}
+        >
           OVERVIEW
         </p>
 
         <h2
-          className={`${quattrocento.className} max-w-[995px] align-middle text-[36px] font-normal leading-[46px] text-[#111111] uppercase`}
+          data-scroll-reveal
+          className={`${quattrocento.className} max-w-[995px] align-middle text-[26px] font-normal leading-[1.2] text-[#111111] uppercase sm:text-[30px] sm:leading-[1.25] md:text-[34px] md:leading-[1.3] lg:text-[36px] lg:leading-[46px] xl:text-[38px]`}
         >
           The future belongs to those who believe in the beauty of their dreams.
         </h2>
 
-        <p className={`${lato.className} max-w-[1180px] text-[16px] font-normal leading-6 text-[#3b3b3b]`}>
+        <p
+          data-scroll-reveal
+          className={`${lato.className} max-w-[1180px] text-[14px] font-normal leading-[1.6] text-[#3b3b3b] sm:text-[15px] md:text-[16px] md:leading-6`}
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
 
         <button
+          data-scroll-reveal
           type="button"
-          className={`${lato.className} inline-flex h-[46px] w-[184px] items-center gap-[10px] rounded-[50px] border border-[#111111] px-[12px] py-[11px] text-[14px] font-semibold leading-[100%] text-[#111111] capitalize`}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={`${lato.className} relative inline-flex h-11 w-full max-w-[184px] items-center justify-center gap-[10px] overflow-hidden rounded-[50px] border border-[#111111] px-[12px] py-[11px] text-[13px] font-semibold leading-[100%] capitalize transition-colors duration-200 sm:h-[46px] sm:text-[14px] lg:mx-0`}
         >
-          Discover Our Story
-          <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-[#111111] text-[12px] leading-none">
-            ↗
+          <span
+            ref={fillRef}
+            className="absolute inline-block h-[280px] w-[280px] rounded-full bg-[#111111] will-change-transform"
+            style={{ left: 0, top: 0, transform: "translate(-50%, -50%) scale(0)" }}
+            aria-hidden
+          />
+          <span
+            className={`relative z-10 flex items-center gap-[10px] ${hoverOrigin ? "text-white" : "text-[#111111]"}`}
+          >
+            Discover Our Story
+            <span
+              className={`inline-flex h-5 w-5 items-center justify-center rounded-full border text-[12px] leading-none ${hoverOrigin ? "border-white text-white" : "border-[#111111] text-[#111111]"}`}
+            >
+              ↗
+            </span>
           </span>
         </button>
       </div>
