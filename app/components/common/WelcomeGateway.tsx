@@ -116,6 +116,7 @@ export function WelcomeGateway({ onComplete }: WelcomeGatewayProps) {
             alt="Sanskar Realty"
             width={520}
             height={158}
+            sizes="(max-width: 640px) 260px, (max-width: 768px) 360px, (max-width: 1024px) 440px, (max-width: 1280px) 520px, 540px"
             priority
             fetchPriority="high"
             className="mx-auto h-auto w-full max-w-[260px] sm:max-w-[360px] md:max-w-[440px] lg:max-w-[520px] xl:max-w-[540px]"

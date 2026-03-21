@@ -128,7 +128,8 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
           alt="Sanskar Realty hero"
           fill
           priority
-          quality={100}
+          fetchPriority="high"
+          quality={60}
           className="object-cover"
         />
       </div>
@@ -140,12 +141,21 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
             ref={(el) => {
               pieceRefs.current[index] = el;
             }}
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0"
             style={{
               clipPath: clip,
-              backgroundImage: "url('/assets/banner (1).png')",
             }}
-          />
+          >
+            <Image
+              src="/assets/banner (1).png"
+              alt=""
+              fill
+              priority
+              quality={60}
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
         ))}
       </div>
 

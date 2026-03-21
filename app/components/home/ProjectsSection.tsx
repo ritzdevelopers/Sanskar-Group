@@ -85,7 +85,7 @@ export function ProjectsSection() {
                   fill
                   className="object-cover"
                   priority={index === 0}
-                  quality={100}
+                  quality={60}
                   sizes="(max-width: 1284px) 100vw, 1284px"
                 />
 
