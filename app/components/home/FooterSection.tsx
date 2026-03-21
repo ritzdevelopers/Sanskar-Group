@@ -91,7 +91,7 @@ export function FooterSection() {
 
           {/* Right: Image */}
           <div className="lg:w-[35%]">
-            <div className="relative aspect-[3/4] w-full overflow-hidden">
+            <div data-scroll-reveal-img className="relative aspect-[3/4] w-full overflow-hidden">
               <Image
                 src="/assets/footer.png"
                 alt="Interior"
@@ -114,7 +114,7 @@ export function FooterSection() {
           href="https://wa.me/9101111112222"
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute -bottom-[-12px] -left-2 inline-flex transition-transform hover:scale-110"
+          className="absolute -bottom-[-12px] left-1/2 -translate-x-1/2 lg:-left-2 lg:translate-x-0 inline-flex transition-transform hover:scale-110"
         >
           <Image
             src="/assets/whatsapp 1.svg"
@@ -124,10 +124,10 @@ export function FooterSection() {
           />
         </a>
 
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:gap-12">
+        <div className="grid grid-cols-1 gap-10 text-center sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:gap-12 lg:text-left">
 
           {/* Column 1: About */}
-          <div className="flex flex-col gap-6 sm:col-span-2 lg:col-span-1 lg:w-[23%]">
+          <div className="flex flex-col items-center gap-6 sm:col-span-2 lg:col-span-1 lg:w-[23%] lg:items-start">
             <h3 data-scroll-reveal className="font-quattrocento text-[28px] font-bold text-[#1A1A1A]">
               About Sanskar
             </h3>
@@ -141,7 +141,7 @@ export function FooterSection() {
               <h4 data-scroll-reveal className="font-quattrocento text-[18px] uppercase text-[#1A1A1A]">
                 FOLLOW US ON
               </h4>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
                 <Link
                   data-scroll-reveal-pop
                   href="#"
@@ -182,7 +182,7 @@ export function FooterSection() {
           </div>
 
           {/* Column 2: Work With Us */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-center gap-6 lg:items-start">
             <Link
               data-scroll-reveal
               href="#"
@@ -207,7 +207,7 @@ export function FooterSection() {
           </div>
 
           {/* Column 3: Our Profile */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col items-center gap-4 lg:items-start">
             <h4
               data-scroll-reveal
               className="mb-2 font-quattrocento text-[18px] font-bold uppercase text-[#1A1A1A]"
@@ -229,7 +229,7 @@ export function FooterSection() {
           </div>
 
           {/* Column 4: Quick Links */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col items-center gap-4 lg:items-start">
             <h4
               data-scroll-reveal
               className="mb-2 font-quattrocento text-[18px] font-bold uppercase text-[#1A1A1A]"
@@ -257,7 +257,7 @@ export function FooterSection() {
           </div>
 
           {/* Column 5: NRI Corner */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col items-center gap-4 lg:items-start">
             <h4
               data-scroll-reveal
               className="mb-2 font-quattrocento text-[18px] font-bold uppercase text-[#1A1A1A]"

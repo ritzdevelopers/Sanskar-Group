@@ -43,7 +43,7 @@ export function ProjectsSection() {
   };
 
   return (
-    <section ref={sectionRef} className="bg-[#F8F8F8]">
+    <section id="projects" ref={sectionRef} className="bg-[#F8F8F8]">
       <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col items-center px-4 py-10 sm:px-6 sm:py-12 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
         <div className="flex w-full max-w-[1004px] flex-col items-center gap-5 text-center sm:gap-6 md:gap-[27px]">
           <p

@@ -21,8 +21,9 @@ let scrollRevealResizeSubscribers = 0;
 
 export const SCROLL_REVEAL_ATTR = "data-scroll-reveal";
 export const SCROLL_REVEAL_POP_ATTR = "data-scroll-reveal-pop";
+export const SCROLL_REVEAL_IMG_ATTR = "data-scroll-reveal-img";
 
-const revealSelector = `[${SCROLL_REVEAL_ATTR}], [${SCROLL_REVEAL_POP_ATTR}]`;
+const revealSelector = `[${SCROLL_REVEAL_ATTR}], [${SCROLL_REVEAL_POP_ATTR}], [${SCROLL_REVEAL_IMG_ATTR}]`;
 
 export type UseScrollRevealOptions = {
   start?: string;
@@ -42,6 +43,10 @@ const defaultOptions: Required<UseScrollRevealOptions> = {
 
 function isPopEl(el: HTMLElement) {
   return el.hasAttribute(SCROLL_REVEAL_POP_ATTR);
+}
+
+function isImgEl(el: HTMLElement) {
+  return el.hasAttribute(SCROLL_REVEAL_IMG_ATTR);
 }
 
 export function useScrollReveal(
@@ -75,6 +80,10 @@ export function useScrollReveal(
               transformOrigin: "50% 100%",
               clearProps: "transform",
             });
+          } else if (isImgEl(el)) {
+            gsap.set(el, { clipPath: "inset(0% 0% 0% 0%)", clearProps: "all" });
+            const img = el.querySelector("img");
+            if (img) gsap.set(img, { scale: 1, clearProps: "all" });
           } else {
             gsap.set(el, { opacity: 1, y: 0, clearProps: "transform" });
           }
@@ -88,6 +97,10 @@ export function useScrollReveal(
               scale: 0.72,
               transformOrigin: "50% 100%",
             });
+          } else if (isImgEl(el)) {
+            gsap.set(el, { clipPath: "inset(0% 0% 0% 100%)" });
+            const img = el.querySelector("img");
+            if (img) gsap.set(img, { scale: 1.2 });
           } else {
             gsap.set(el, { opacity: 0, y: o.y });
           }
@@ -112,6 +125,26 @@ export function useScrollReveal(
               },
               at
             );
+          } else if (isImgEl(el)) {
+            tl.fromTo(
+              el,
+              { clipPath: "inset(0% 0% 0% 100%)" },
+              {
+                clipPath: "inset(0% 0% 0% 0%)",
+                duration: 1.2,
+                ease: "power3.inOut",
+              },
+              at
+            );
+            const img = el.querySelector("img");
+            if (img) {
+              tl.fromTo(
+                img,
+                { scale: 1.2 },
+                { scale: 1, duration: 1.2, ease: "power3.inOut" },
+                at
+              );
+            }
           } else {
             tl.fromTo(
               el,
@@ -146,6 +179,17 @@ export function useScrollReveal(
               ease: "power2.in",
               delay,
             });
+          } else if (isImgEl(el)) {
+            gsap.to(el, {
+              clipPath: "inset(0% 0% 0% 100%)",
+              duration: 0.6,
+              ease: "power2.in",
+              delay,
+            });
+            const img = el.querySelector("img");
+            if (img) {
+              gsap.to(img, { scale: 1.2, duration: 0.6, ease: "power2.in", delay });
+            }
           } else {
             gsap.to(el, {
               opacity: 0,

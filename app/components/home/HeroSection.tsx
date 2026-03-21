@@ -93,6 +93,11 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
   }, [startIntroAnimation]);
 
   useEffect(() => {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+
     const onScroll = () => {
       setIsScrolled(window.scrollY > 40);
     };
@@ -146,83 +151,83 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
 
       <header className="fixed inset-x-0 top-0 z-50">
         <div
-          className={`w-full px-4 py-2.5 transition-all duration-300 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 ${
-            isScrolled ? "bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)]" : "bg-transparent"
-          }`}
+          className={`w-full px-4 py-2.5 transition-all duration-300 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 ${isScrolled ? "bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)]" : "bg-transparent"
+            }`}
         >
           <nav className="mx-auto flex w-full max-w-[1200px] xl:max-w-[1280px] 2xl:max-w-[1360px] items-center justify-between gap-3">
-          <div
-            ref={(el) => {
-              navItemsRef.current[0] = el;
-            }}
-            className="min-w-0 shrink"
-          >
-            <Image
-              src="/assets/sanskar_logo.png"
-              alt="Sanskar Realty logo"
-              width={153}
-              height={50}
-              priority
-              quality={100}
-              className={`h-9 w-auto max-w-[120px] object-contain transition duration-300 sm:h-10 sm:max-w-[140px] md:h-11 md:max-w-[153px] lg:h-[50px] ${
-                isScrolled ? "brightness-0" : ""
-              }`}
-            />
-          </div>
-          <div className="flex shrink-0 items-center gap-3 sm:gap-6 md:gap-8 lg:gap-10">
             <div
               ref={(el) => {
-                navItemsRef.current[1] = el;
+                navItemsRef.current[0] = el;
               }}
-              className="hidden md:block"
+              className="min-w-0 shrink cursor-pointer"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
-              <button
-                type="button"
-                className={`text-center text-sm font-medium leading-7 transition-colors duration-300 md:text-[15px] lg:text-[16px] ${
-                  isScrolled ? "text-black" : "text-white"
-                }`}
-              >
-                Our Story
-              </button>
-            </div>
-            <div
-              ref={(el) => {
-                navItemsRef.current[2] = el;
-              }}
-              className="hidden md:block"
-            >
-              <button
-                type="button"
-                className={`text-center text-sm font-medium leading-7 transition-colors duration-300 md:text-[15px] lg:text-[16px] ${
-                  isScrolled ? "text-black" : "text-white"
-                }`}
-              >
-                Projects
-              </button>
-            </div>
-            <div
-              ref={(el) => {
-                navItemsRef.current[3] = el;
-              }}
-            >
-              <button
-                type="button"
-                aria-label="Open menu"
-                onClick={() => setMenuOpen(true)}
-                className="flex h-8 w-8 items-center justify-center"
-              >
-                <Image
-                  src="/assets/hamburger_icon.svg"
-                  alt=""
-                  width={24}
-                  height={24}
-                  className={`transition duration-300 ${
-                    isScrolled ? "brightness-0" : "invert"
+              <Image
+                src="/assets/sanskar_logo.png"
+                alt="Sanskar Realty logo"
+                width={153}
+                height={50}
+                priority
+                quality={100}
+                className={`h-9 w-auto max-w-[120px] object-contain transition duration-300 sm:h-10 sm:max-w-[140px] md:h-11 md:max-w-[153px] lg:h-[50px] ${isScrolled ? "brightness-0" : ""
                   }`}
-                />
-              </button>
+              />
             </div>
-          </div>
+            <div className="flex shrink-0 items-center gap-3 sm:gap-6 md:gap-8 lg:gap-10">
+              <div
+                ref={(el) => {
+                  navItemsRef.current[1] = el;
+                }}
+                className="hidden md:block"
+              >
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('why-invest')?.scrollIntoView({ behavior: 'smooth' })}
+                  className={`group relative text-center text-sm font-medium leading-7 transition-colors duration-300 md:text-[15px] lg:text-[16px] cursor-pointer ${isScrolled ? "text-black" : "text-white"
+                    }`}
+                >
+                  Our Story
+                  <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#F5AC00] transition-all duration-300 group-hover:w-full"></span>
+                </button>
+              </div>
+              <div
+                ref={(el) => {
+                  navItemsRef.current[2] = el;
+                }}
+                className="hidden md:block"
+              >
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                  className={`group relative text-center text-sm font-medium leading-7 transition-colors duration-300 md:text-[15px] lg:text-[16px] cursor-pointer ${isScrolled ? "text-black" : "text-white"
+                    }`}
+                >
+                  Projects
+                  <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#F5AC00] transition-all duration-300 group-hover:w-full"></span>
+                </button>
+              </div>
+              <div
+                ref={(el) => {
+                  navItemsRef.current[3] = el;
+                }}
+              >
+                <button
+                  type="button"
+                  aria-label="Open menu"
+                  onClick={() => setMenuOpen(true)}
+                  className="flex h-8 w-8 items-center justify-center"
+                >
+                  <Image
+                    src="/assets/hamburger_icon.svg"
+                    alt=""
+                    width={24}
+                    height={24}
+                    className={`transition duration-300 ${isScrolled ? "brightness-0" : "invert"
+                      }`}
+                  />
+                </button>
+              </div>
+            </div>
           </nav>
         </div>
       </header>

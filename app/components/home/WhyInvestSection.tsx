@@ -38,7 +38,7 @@ export function WhyInvestSection() {
   useScrollReveal(sectionRef, { stagger: 0.1 });
 
   return (
-    <section ref={sectionRef} className="bg-[#FFFFFF/95] py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24">
+    <section id="why-invest" ref={sectionRef} className="bg-[#FFFFFF/95] py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24">
       <div className="mx-auto w-full max-w-[1360px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
         <h2
           data-scroll-reveal
@@ -74,7 +74,7 @@ export function WhyInvestSection() {
                 {card.description}
               </p>
 
-              <div className="relative mt-4 aspect-[333/174] w-full overflow-hidden sm:mt-5">
+              <div data-scroll-reveal-img className="relative mt-4 aspect-[333/174] w-full overflow-hidden sm:mt-5">
                 <Image src={card.image} alt={card.title} fill className="object-cover" quality={100} sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 384px" />
               </div>
             </article>

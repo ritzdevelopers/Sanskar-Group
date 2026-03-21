@@ -26,7 +26,7 @@ export function StorySection() {
     >
       <div className="mx-auto flex w-full max-w-[1320px] flex-col gap-10 px-4 sm:gap-12 sm:px-6 md:gap-14 md:px-8 lg:gap-16 lg:px-10 xl:px-12 2xl:px-16">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-center lg:gap-10 xl:gap-12">
-          <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] md:max-h-[420px] lg:aspect-auto lg:h-[450px] lg:max-h-none lg:w-[min(100%,641px)] lg:shrink-0">
+          <div data-scroll-reveal-img className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] md:max-h-[420px] lg:aspect-auto lg:h-[450px] lg:max-h-none lg:w-[min(100%,641px)] lg:shrink-0">
             <Image
               src="/assets/creating_communities.png"
               alt="Building trust visual"
@@ -89,7 +89,7 @@ export function StorySection() {
             </button>
           </div>
 
-          <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] md:max-h-[420px] lg:aspect-auto lg:h-[450px] lg:max-h-none lg:w-[min(100%,641px)] lg:shrink-0">
+          <div data-scroll-reveal-img className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] md:max-h-[420px] lg:aspect-auto lg:h-[450px] lg:max-h-none lg:w-[min(100%,641px)] lg:shrink-0">
             <Image
               src="/assets/building_trust.png"
               alt="Creating communities visual"
