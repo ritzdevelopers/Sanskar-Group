@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { Lato, Quattrocento } from "next/font/google";
-import { useRef, useState, useCallback } from "react";
-import { gsap } from "gsap";
+import { useRef } from "react";
 import { useScrollReveal } from "../common/useScrollReveal";
 
 const lato = Lato({
@@ -17,36 +17,8 @@ const quattrocento = Quattrocento({
 
 export function OverviewSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const fillRef = useRef<HTMLSpanElement>(null);
-  const [hoverOrigin, setHoverOrigin] = useState<{ x: number; y: number } | null>(null);
 
   useScrollReveal(sectionRef);
-
-  const handleMouseEnter = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      const btn = e.currentTarget;
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      setHoverOrigin({ x, y });
-
-      const fill = fillRef.current;
-      if (fill) {
-        gsap.set(fill, { left: x, top: y, scale: 0, xPercent: -50, yPercent: -50 });
-        gsap.to(fill, { scale: 2.5, duration: 0.45, ease: "power2.out" });
-      }
-    },
-    []
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    const fill = fillRef.current;
-    if (fill) {
-      gsap.to(fill, { scale: 0, duration: 0.35, ease: "power2.in", onComplete: () => setHoverOrigin(null) });
-    } else {
-      setHoverOrigin(null);
-    }
-  }, []);
 
   return (
     <section ref={sectionRef} className="relative overflow-x-hidden bg-white pt-2 sm:pt-3">
@@ -93,24 +65,29 @@ export function OverviewSection() {
         <button
           data-scroll-reveal
           type="button"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className={`${lato.className} relative inline-flex h-11 w-full max-w-[184px] items-center justify-center gap-[10px] overflow-hidden rounded-[50px] border border-[#111111] px-[12px] py-[11px] text-[13px] font-semibold leading-[100%] capitalize transition-colors duration-200 sm:h-[46px] sm:text-[14px] lg:mx-0`}
+          className={`${lato.className} group relative inline-flex h-11 w-full max-w-[184px] items-center justify-center gap-[10px] overflow-hidden rounded-[50px] border border-[#111111] px-[12px] py-[11px] text-[13px] font-semibold leading-[100%] capitalize transition-all duration-700 ease-out hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(17,17,17,0.18)] active:translate-y-0 active:shadow-none sm:h-[46px] sm:text-[14px] lg:mx-0`}
         >
           <span
-            ref={fillRef}
-            className="absolute inline-block h-[280px] w-[280px] rounded-full bg-[#111111] will-change-transform"
-            style={{ left: 0, top: 0, transform: "translate(-50%, -50%) scale(0)" }}
+            className="absolute inset-0 -translate-x-full bg-[#111111] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0"
             aria-hidden
           />
-          <span
-            className={`relative z-10 flex items-center gap-[10px] ${hoverOrigin ? "text-white" : "text-[#111111]"}`}
-          >
+          <span className="relative z-10 flex items-center gap-[10px] text-[#111111] transition-colors duration-700 group-hover:text-white">
             Discover Our Story
-            <span
-              className={`inline-flex h-5 w-5 items-center justify-center rounded-full border text-[12px] leading-none ${hoverOrigin ? "border-white text-white" : "border-[#111111] text-[#111111]"}`}
-            >
-              ↗
+            <span className="relative inline-flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#111111] transition-[border-color,box-shadow] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-transparent group-hover:shadow-[0_0_0_1px_rgba(255,255,255,0.45)]">
+              {/* Black dot grows from center; faint ring keeps it readable on the filled black button */}
+              <span
+                className="absolute inset-0 scale-0 rounded-full bg-[#111111] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100"
+                aria-hidden
+              />
+              {/* Arrow emerges from inside the dot */}
+              <Image
+                src="/assets/arrow-discovery.svg"
+                alt=""
+                width={9}
+                height={9}
+                className="relative z-10 h-[9px] w-[9px] origin-center scale-0 opacity-0 transition-[transform,opacity,filter] duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-100 group-hover:opacity-100 group-hover:delay-[140ms] group-hover:duration-[850ms] group-hover:brightness-0 group-hover:invert"
+                aria-hidden
+              />
             </span>
           </span>
         </button>

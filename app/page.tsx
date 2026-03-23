@@ -4,6 +4,7 @@ import { ProjectsSection } from "./components/home/ProjectsSection";
 import { StorySection } from "./components/home/StorySection";
 import { WhyInvestSection } from "./components/home/WhyInvestSection";
 import { ProjectShowcaseSliderSection } from "./components/home/ProjectShowcaseSliderSection";
+import { LocationAdvantageSection } from "./components/home/LocationAdvantageSection";
 import { TestimonialsSection } from "./components/home/TestimonialsSection";
 import { PressReleasesSection } from "./components/home/PressReleasesSection";
 import { FooterSection } from "./components/home/FooterSection";
@@ -35,6 +36,7 @@ export default function Home() {
         <StorySection />
         <WhyInvestSection />
         <ProjectShowcaseSliderSection />
+        <LocationAdvantageSection />
         <TestimonialsSection />
         <PressReleasesSection />
         <FooterSection />

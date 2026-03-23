@@ -90,7 +90,7 @@ export function ProjectShowcaseSliderSection() {
   };
 
   return (
-    <section ref={sectionRef} className="bg-white pb-10 lg:h-[775px] lg:pb-0">
+    <section ref={sectionRef} className="bg-white pb-10 lg:pb-0">
       <style>{`
         :root {
           --fill-slider-duration: 1.5s;
@@ -117,8 +117,8 @@ export function ProjectShowcaseSliderSection() {
           to { clip-path: inset(0 0 0 0); }
         }
       `}</style>
-      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col px-4 sm:px-6 md:px-8 lg:h-full lg:px-10 xl:px-12 2xl:px-16">
-        <div className="flex shrink-0 items-center justify-end gap-2 py-3 sm:gap-3 sm:py-4">
+      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col px-4 sm:px-6 md:px-8 lg:px-0">
+        <div className="flex shrink-0 items-center justify-end gap-2 py-3 sm:gap-3 sm:py-4 lg:pr-8">
           <button
             type="button"
             aria-label="Previous slide"
@@ -137,7 +137,7 @@ export function ProjectShowcaseSliderSection() {
           </button>
         </div>
 
-        <div className="relative min-h-[260px] w-full flex-1 overflow-hidden sm:min-h-[340px] md:min-h-[420px] lg:min-h-0 lg:h-[691px] lg:flex-none">
+        <div className="relative min-h-[260px] w-full flex-1 overflow-hidden sm:min-h-[340px] md:min-h-[420px] lg:min-h-0 lg:h-[775px] lg:flex-none">
           <div className="absolute inset-0 z-0">
             <Image
               src={showcaseSlides[activeIndex].image}
@@ -180,7 +180,7 @@ export function ProjectShowcaseSliderSection() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto mt-4 flex w-full max-w-[448px] flex-col gap-3 rounded-[10px] bg-[#F4F4F4] px-5 py-6 sm:mt-5 sm:gap-[10px] sm:px-6 sm:py-8 lg:absolute lg:left-auto lg:right-6 lg:top-[81px] lg:mt-0 lg:h-auto lg:min-h-[560px] lg:w-[min(calc(100%-3rem),448px)] lg:px-8 lg:py-12 xl:right-10 xl:min-h-[613px] xl:py-[71px] 2xl:right-12">
+        <div className="relative z-20 mx-auto mt-4 flex w-full max-w-[448px] flex-col gap-3 rounded-[10px] bg-[#F4F4F4] px-5 py-6 sm:mt-5 sm:gap-[10px] sm:px-6 sm:py-8 lg:absolute lg:left-auto lg:right-[134px] lg:top-[110px] lg:mt-0 lg:h-[613px] lg:w-[448px] lg:gap-[10px] lg:px-8 lg:py-[71px]">
           <p
             data-scroll-reveal
             className={`${lato.className} text-center text-[16px] font-normal leading-none text-[#2F2F2F] sm:text-[17px] md:text-[18px]`}

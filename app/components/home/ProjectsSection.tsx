@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Lato, Quattrocento } from "next/font/google";
 import { useScrollReveal } from "../common/useScrollReveal";
 
@@ -24,12 +24,12 @@ const slides = [
   {
     id: 2,
     title: "Eternia Project",
-    image: "/assets/projects_main.png",
+    image: "/assets/project_slider_banner.png",
   },
   {
     id: 3,
     title: "Eternia Project",
-    image: "/assets/projects_main.png",
+    image: "/assets/banner (1).png",
   },
 ];
 
@@ -37,6 +37,14 @@ export function ProjectsSection() {
   const [activeSlide, setActiveSlide] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   useScrollReveal(sectionRef);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % slides.length);
+    }, 4000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   const nextSlide = () => {
     setActiveSlide((prev) => (prev + 1) % slides.length);
@@ -105,7 +113,13 @@ export function ProjectsSection() {
               onClick={nextSlide}
               className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg text-[#111111] sm:right-6 sm:top-6 sm:h-11 sm:w-11 sm:text-xl md:right-8 md:top-8"
             >
-              ↗
+              <Image
+                src="/assets/diagonal_icon.svg"
+                alt=""
+                width={15}
+                height={15}
+                aria-hidden="true"
+              />
             </button>
           </div>
 

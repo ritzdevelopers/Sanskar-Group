@@ -58,7 +58,13 @@ export function StorySection() {
               className={`${lato.className} mx-auto inline-flex w-fit items-center gap-2 text-[17px] font-bold uppercase leading-none text-[#3A3A3A] sm:text-[18px] md:text-[20px] lg:mx-0`}
             >
               <span className="border-b border-[#3A3A3A] pb-1">Our Story</span>
-              <span aria-hidden>›</span>
+              <Image
+                src="/assets/bracket.svg"
+                alt=""
+                width={8}
+                height={13}
+                aria-hidden="true"
+              />
             </button>
           </div>
         </div>
@@ -88,7 +94,13 @@ export function StorySection() {
               className={`${lato.className} mx-auto inline-flex w-fit items-center gap-2 text-[17px] font-bold uppercase leading-none text-[#3A3A3A] sm:text-[18px] md:text-[20px] lg:mx-0`}
             >
               <span className="border-b border-[#3A3A3A] pb-1">Our Impact</span>
-              <span aria-hidden>›</span>
+              <Image
+                src="/assets/bracket.svg"
+                alt=""
+                width={8}
+                height={13}
+                aria-hidden="true"
+              />
             </button>
           </div>
 
