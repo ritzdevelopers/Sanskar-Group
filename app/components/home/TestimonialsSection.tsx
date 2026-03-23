@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useScrollReveal } from "../common/useScrollReveal";
 import { Lato, Quattrocento } from "next/font/google";
 
@@ -22,77 +22,41 @@ type Testimonial = {
   quote: string;
 };
 
+const firstSlideContent: Testimonial[] = [
+  {
+    id: "ravi-1",
+    name: "Rajesh Kumar | Resident, Noida Extension.",
+    image: "/assets/testimonial_ravi.png",
+    quote:
+      '"Living in a house of Sanskar Realty is a dream come true. The contemporary facilities, superior construction and fittings, and fine details exceed anything we saw in Noida Extension. "',
+  },
+  {
+    id: "mohit-1",
+    name: "Priya Mehta | Investor, Delhi NCR.",
+    image: "/assets/testimonial_mohit.png",
+    quote:
+      '"Our family could not be happier. My investment has paid much more than I could have hoped, plus the quality is there.  The site, layout and credentials of Yatharth Group makes this my smartest NCR real estate investment."',
+  },
+];
+
 const testimonialSlides: Testimonial[][] = [
-  [
-    {
-      id: "ravi-1",
-      name: "Rajesh Kumar | Resident, Noida Extension.",
-      image: "/assets/testimonial_ravi.png",
-      quote:
-        '"Living in a house of Sanskar Realty is a dream come true. The contemporary facilities, superior construction and fittings, and fine details exceed anything we saw in Noida Extension. "',
-    },
-    {
-      id: "mohit-1",
-      name: "Priya Mehta | Investor, Delhi NCR.",
-      image: "/assets/testimonial_mohit.png",
-      quote:
-        '"Our family could not be happier. My investment has paid much more than I could have hoped, plus the quality is there.  The site, layout and credentials of Yatharth Group makes this my smartest NCR real estate investment."',
-    },
-  ],
-  [
-    {
-      id: "mohit-2",
-      name: "Mohit Sharma",
-      image: "/assets/testimonial_mohit.png",
-      quote:
-        '"The team delivered quality construction and timely handover. The overall buying and support experience was smooth."',
-    },
-    {
-      id: "ravi-2",
-      name: "Ravi Gupta",
-      image: "/assets/testimonial_ravi.png",
-      quote:
-        '"Their planning and amenities are impressive. We feel confident about long-term value and community growth."',
-    },
-  ],
-  [
-    {
-      id: "ravi-3",
-      name: "Ravi Gupta",
-      image: "/assets/testimonial_ravi.png",
-      quote:
-        '"Excellent connectivity and thoughtful layout made this project the right choice for my family and investment goals."',
-    },
-    {
-      id: "mohit-3",
-      name: "Mohit Sharma",
-      image: "/assets/testimonial_mohit.png",
-      quote:
-        '"Professional site team, clear communication, and strong design quality throughout the entire development process."',
-    },
-  ],
-  [
-    {
-      id: "mohit-4",
-      name: "Mohit Sharma",
-      image: "/assets/testimonial_mohit.png",
-      quote:
-        '"From booking to possession, everything felt transparent and customer-focused. Highly recommended experience."',
-    },
-    {
-      id: "ravi-4",
-      name: "Ravi Gupta",
-      image: "/assets/testimonial_ravi.png",
-      quote:
-        '"A reliable developer with premium quality standards. The project has exceeded our expectations in every aspect."',
-    },
-  ],
+  firstSlideContent,
+  firstSlideContent.map((item) => ({ ...item, id: item.id + "-2" })),
+  firstSlideContent.map((item) => ({ ...item, id: item.id + "-3" })),
+  firstSlideContent.map((item) => ({ ...item, id: item.id + "-4" })),
 ];
 
 export function TestimonialsSection() {
   const [activeSlide, setActiveSlide] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   useScrollReveal(sectionRef);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((current) => (current + 1) % testimonialSlides.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section ref={sectionRef} className="bg-[#FFFFFF] py-10 sm:py-12 md:py-14">

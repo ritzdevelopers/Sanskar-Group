@@ -69,7 +69,7 @@ export function ProjectsSection() {
             From luxury 3 & 4 BHK residences in Noida Extension to studio apartments in Greater Noida West and gated forest villas in Ghaziabad, we have it all.
 
           </p>
-        </div>  
+        </div>
 
         <div className="mt-6 w-full max-w-[1284px] sm:mt-8">
           <div className="relative aspect-[4/3] min-h-[220px] w-full overflow-hidden sm:aspect-[16/10] md:aspect-[5/3] md:min-h-[360px] lg:aspect-auto lg:h-[520px] xl:h-[580px] 2xl:h-[611px]">

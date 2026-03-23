@@ -114,7 +114,7 @@ export function FooterSection() {
           href="https://wa.me/9101111112222"
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute -bottom-[-12px] left-1/2 -translate-x-1/2 lg:-left-2 lg:translate-x-0 inline-flex transition-transform hover:scale-110"
+          className="hidden absolute -bottom-[-12px] left-1/2 -translate-x-1/2 lg:-left-2 lg:translate-x-0 transition-transform hover:scale-110"
         >
           <Image
             src="/assets/whatsapp 1.svg"

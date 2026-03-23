@@ -21,8 +21,11 @@ const showcaseSlides = [
     headline: "Towering at a Trailblazing Pace",
     subtext: "Construction in full swing",
     projectName: "Project One",
-    description:
-      "Located at Noida Extension, Eternia by Sanskar Realty offers premium 3BHK and 4BHK apartments. This project promises a luxurious living experience with its contemporary amenities, roomy layouts, and Vastu-compliant design.",
+    description: (
+      <>
+        Located at <strong>Noida Extension</strong>, Eternia by Sanskar Realty offers premium <strong>3BHK and 4BHK apartments</strong>. This project promises a luxurious living experience with its <strong>world-class amenities, roomy layouts, and Vastu-compliant design.</strong>
+      </>
+    ),
     image: "/assets/project_slider_banner.png",
   },
   {
@@ -30,37 +33,90 @@ const showcaseSlides = [
     headline: "Modern Living, Elevated Daily",
     subtext: "Premium lifestyle spaces",
     projectName: "Project Two",
-    description:
-      "In Greater Noida West, High Life offers 1 & 2 BHK studio apartments . High Life 1 is set in a G+26-story tower, while High Life 2 in a G+18-story tower. Both projects are ideally situated along a 130-meter road, views of a 100-meter green belt and come furnished with IKEA. Enjoy quick access to commercial districts, retail establishments, and entertainment venues.",
-    image: "/assets/project_slider_banner.png",
+    description: (
+      <>
+        High Life In <strong>Greater Noida West</strong>, has <strong>1 & 2 BHK studio apartments</strong> within a <strong>mixed-use development</strong>. Located along a <strong>130-meter road</strong> with <strong>100-meter green belt</strong> views, these homes come <strong>furnished with IKEA</strong>.
+      </>
+    ),
+    image: "/assets/projects_main.png",
   },
   {
     id: 3,
     headline: "Built for Tomorrow's Urban Life",
     subtext: "Thoughtfully crafted homes",
     projectName: "Project Three",
-    description:
-      "Ghaziabad's exclusive gated villa community, The Forest Walk, combines urban luxury with a natural lifestyle. With only 97 villas, residents enjoy large green spaces to a forest trail right outside. It is an ideal combination of seclusion and connectivity and is conveniently accessible from Delhi and Noida thanks to its location on NH-24.",
-    image: "/assets/project_slider_banner.png",
+    description: (
+      <>
+        The Forest Walk in <strong>Ghaziabad</strong> is an exclusive gated villa community that blends urban luxury with nature. With only <strong>97 villas</strong>, large <strong>green spaces</strong> and a <strong>forest trail</strong>, it offers easy connectivity to Delhi and Noida via <strong>NH-24</strong>.
+      </>
+    ),
+    image: "/assets/banner%20(1).png",
   },
 ];
 
 export function ProjectShowcaseSliderSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [overlay, setOverlay] = useState<{ index: number; direction: "next" | "prev" } | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
   const sectionRef = useRef<HTMLElement>(null);
   useScrollReveal(sectionRef);
-  const activeSlide = showcaseSlides[activeIndex];
+
+  const displayIndex = overlay ? overlay.index : activeIndex;
+  const activeSlide = showcaseSlides[displayIndex];
 
   const goPrev = () => {
-    setActiveIndex((prev) => (prev - 1 + showcaseSlides.length) % showcaseSlides.length);
+    if (isTransitioning) return;
+    const prevIndex = (activeIndex - 1 + showcaseSlides.length) % showcaseSlides.length;
+    setOverlay({ index: prevIndex, direction: "prev" });
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setActiveIndex(prevIndex);
+      setOverlay(null);
+      setIsTransitioning(false);
+    }, 1500);
   };
 
   const goNext = () => {
-    setActiveIndex((prev) => (prev + 1) % showcaseSlides.length);
+    if (isTransitioning) return;
+    const nextIndex = (activeIndex + 1) % showcaseSlides.length;
+    setOverlay({ index: nextIndex, direction: "next" });
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setActiveIndex(nextIndex);
+      setOverlay(null);
+      setIsTransitioning(false);
+    }, 1500);
   };
 
   return (
     <section ref={sectionRef} className="bg-white pb-10 lg:h-[775px] lg:pb-0">
+      <style>{`
+        :root {
+          --fill-slider-duration: 1.5s;
+          --fill-slider-easing: cubic-bezier(0.34, 1.35, 0.64, 1);
+        }
+        .fill-slider-overlay {
+          position: absolute;
+          inset: 0;
+          z-index: 10;
+          pointer-events: none;
+        }
+        .fill-slider-overlay--next {
+          clip-path: inset(0 0 0 100%);
+          animation: fillSliderFromRight var(--fill-slider-duration) var(--fill-slider-easing) forwards;
+        }
+        @keyframes fillSliderFromRight {
+          to { clip-path: inset(0 0 0 0); }
+        }
+        .fill-slider-overlay--prev {
+          clip-path: inset(0 100% 0 0);
+          animation: fillSliderFromLeft var(--fill-slider-duration) var(--fill-slider-easing) forwards;
+        }
+        @keyframes fillSliderFromLeft {
+          to { clip-path: inset(0 0 0 0); }
+        }
+      `}</style>
       <div className="relative mx-auto flex w-full max-w-[1440px] flex-col px-4 sm:px-6 md:px-8 lg:h-full lg:px-10 xl:px-12 2xl:px-16">
         <div className="flex shrink-0 items-center justify-end gap-2 py-3 sm:gap-3 sm:py-4">
           <button
@@ -82,23 +138,31 @@ export function ProjectShowcaseSliderSection() {
         </div>
 
         <div className="relative min-h-[260px] w-full flex-1 overflow-hidden sm:min-h-[340px] md:min-h-[420px] lg:min-h-0 lg:h-[691px] lg:flex-none">
-          {showcaseSlides.map((slide, index) => (
-            <div
-              key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-500 ${index === activeIndex ? "opacity-100" : "opacity-0"
-                }`}
-            >
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={showcaseSlides[activeIndex].image}
+              alt={showcaseSlides[activeIndex].projectName}
+              fill
+              className="object-cover"
+              quality={100}
+              priority
+              sizes="(max-width: 1024px) 100vw, 1440px"
+            />
+          </div>
+
+          {overlay && (
+            <div className={`fill-slider-overlay fill-slider-overlay--${overlay.direction}`}>
               <Image
-                src={slide.image}
-                alt={slide.projectName}
+                src={showcaseSlides[overlay.index].image}
+                alt={showcaseSlides[overlay.index].projectName}
                 fill
                 className="object-cover"
                 quality={100}
-                priority={index === 0}
+                priority
                 sizes="(max-width: 1024px) 100vw, 1440px"
               />
             </div>
-          ))}
+          )}
 
           <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/75 via-black/30 to-transparent px-4 pb-5 pt-20 sm:px-6 sm:pb-6 sm:pt-24 md:pt-28 lg:inset-x-auto lg:bottom-auto lg:left-6 lg:right-auto lg:top-[26%] lg:block lg:-translate-y-1/2 lg:bg-transparent lg:bg-none lg:px-0 lg:pb-0 lg:pt-0 xl:left-10 2xl:left-16">
             <h3
@@ -131,14 +195,29 @@ export function ProjectShowcaseSliderSection() {
           </h4>
 
           <div className="relative aspect-[16/10] w-full overflow-hidden sm:max-h-[240px] sm:aspect-auto sm:h-[200px] md:max-h-none">
-            <Image
-              src={activeSlide.image}
-              alt={activeSlide.projectName}
-              fill
-              className="object-cover"
-              quality={100}
-              sizes="(max-width:1024px) 90vw, 448px"
-            />
+            <div className="absolute inset-0 z-0">
+              <Image
+                src={showcaseSlides[activeIndex].image}
+                alt={showcaseSlides[activeIndex].projectName}
+                fill
+                className="object-cover"
+                quality={100}
+                sizes="(max-width:1024px) 90vw, 448px"
+              />
+            </div>
+
+            {overlay && (
+              <div className={`fill-slider-overlay fill-slider-overlay--${overlay.direction}`}>
+                <Image
+                  src={showcaseSlides[overlay.index].image}
+                  alt={showcaseSlides[overlay.index].projectName}
+                  fill
+                  className="object-cover"
+                  quality={100}
+                  sizes="(max-width:1024px) 90vw, 448px"
+                />
+              </div>
+            )}
           </div>
 
           <p

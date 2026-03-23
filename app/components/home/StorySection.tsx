@@ -42,21 +42,22 @@ export function StorySection() {
               data-scroll-reveal
               className={`${quattrocento.className} text-[22px] font-normal uppercase leading-[1.08] tracking-[0.01em] text-[#202020] sm:text-[24px] md:text-[26px]`}
             >
-              Building A Legacy of Excellence
+              BUILDING TRUST, CREATING HOMES
+
 
             </h3>
             <p
               data-scroll-reveal
               className={`${lato.className} text-[14px] font-normal leading-[1.5] text-[#555555] sm:text-[15px] md:text-[16px] md:leading-[1.45] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4] overflow-hidden md:[-webkit-line-clamp:3] lg:[display:block] lg:[-webkit-line-clamp:unset] lg:overflow-visible`}
             >
-              Our mission is to deliver exceptional living spaces with a blend of luxury, comfort and sustainable design. Our organization builds residential and commercial properties which deliver enduring worth through innovative solutions that meet customer needs while setting new standards in the real estate industry.
+              Our journey started with a simple brief - every family deserves a home crafted with honesty, consideration, and foresight. Backed by the Yatharth Group's legacy, we are redefining luxury living throughout Delhi NCR.
             </p>
             <button
               data-scroll-reveal
               type="button"
               className={`${lato.className} mx-auto inline-flex w-fit items-center gap-2 text-[17px] font-bold uppercase leading-none text-[#3A3A3A] sm:text-[18px] md:text-[20px] lg:mx-0`}
             >
-              <span className="border-b border-[#3A3A3A] pb-1">Our Mission</span>
+              <span className="border-b border-[#3A3A3A] pb-1">Our Story</span>
               <span aria-hidden>›</span>
             </button>
           </div>
@@ -68,7 +69,8 @@ export function StorySection() {
               data-scroll-reveal
               className={`${quattrocento.className} text-[22px] font-normal uppercase leading-[1.08] tracking-[0.01em] text-[#202020] sm:text-[24px] md:text-[26px] lg:whitespace-nowrap`}
             >
-              Redefining Living, Inspiring Futures
+              CREATING COMMUNITIES THAT LAST
+
 
             </h3>
             <p
@@ -76,7 +78,8 @@ export function StorySection() {
               className={`${lato.className} text-[14px] font-normal leading-[1.5] text-[#555555] sm:text-[15px] md:text-[16px] md:leading-[1.45] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4] overflow-hidden md:[-webkit-line-clamp:3] lg:[display:block] lg:[-webkit-line-clamp:unset] lg:overflow-visible`}
             >
 
-              Our vision is to be a trusted leader and reliable real estate company creating sustainable communities and forward-thinking spaces for better customer lifestyles. Our goal is to expand our reach across NCR and beyond, offering high-quality residential and commercial properties that maintain their value throughout time.
+              Our influence goes beyond real estate; we create communities where families develop, bond, and prosper. Across Ghaziabad, Noida Extension, and Greater Noida West we’ve helped hundreds find their forever homes.
+
 
             </p>
             <button
@@ -84,7 +87,7 @@ export function StorySection() {
               type="button"
               className={`${lato.className} mx-auto inline-flex w-fit items-center gap-2 text-[17px] font-bold uppercase leading-none text-[#3A3A3A] sm:text-[18px] md:text-[20px] lg:mx-0`}
             >
-              <span className="border-b border-[#3A3A3A] pb-1">Our Vision</span>
+              <span className="border-b border-[#3A3A3A] pb-1">Our Impact</span>
               <span aria-hidden>›</span>
             </button>
           </div>

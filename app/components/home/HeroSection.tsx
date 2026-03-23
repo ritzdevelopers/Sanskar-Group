@@ -228,11 +228,11 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
                   className="flex h-8 w-8 items-center justify-center"
                 >
                   <Image
-                    src="/assets/hamburger_icon.svg"
+                    src="/assets/hamburger_menu.svg"
                     alt=""
                     width={24}
                     height={24}
-                    className={`transition duration-300 ${isScrolled ? "brightness-0" : "invert"
+                    className={`transition duration-300 ${isScrolled ? "brightness-0" : ""
                       }`}
                   />
                 </button>
