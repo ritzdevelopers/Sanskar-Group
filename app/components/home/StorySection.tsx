@@ -22,7 +22,7 @@ export function StorySection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[radial-gradient(#ebebeb_1px,transparent_1px)] [background-size:12px_12px] py-10 sm:py-12 md:py-14 md:[background-size:16px_16px] lg:py-20 xl:py-24 2xl:py-28"
+      className="bg-[radial-gradient(#ebebeb_1.5px,transparent_1.5px)] [background-size:14px_14px] py-10 sm:py-12 md:py-14 md:[background-size:18px_18px] lg:py-20"
     >
       <h2 className="sr-only">Our Story and Impact</h2>
       <div className="mx-auto flex w-full max-w-[1320px] flex-col gap-10 px-4 sm:gap-12 sm:px-6 md:gap-14 md:px-8 lg:gap-16 lg:px-10 xl:px-12 2xl:px-16">

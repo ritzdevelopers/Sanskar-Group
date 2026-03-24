@@ -31,7 +31,7 @@ const slides = [
   {
     id: 3,
     title: "Forest Walk",
-    image: "/assets/forest_walk.png",
+    image: "/assets/forest_walk 2.png",
     url: "https://theforestwalk.com/",
   },
 ];

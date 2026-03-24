@@ -20,24 +20,50 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       touchMultiplier: 1.2,
     });
 
-    const syncScrollTrigger = () => {
-      ScrollTrigger.update();
-    };
-    lenis.on("scroll", syncScrollTrigger);
+    const scroller = document.documentElement;
 
-    let rafId = 0;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      ScrollTrigger.update();
-      rafId = requestAnimationFrame(raf);
-    };
+    lenis.on("scroll", ScrollTrigger.update);
 
-    rafId = requestAnimationFrame(raf);
+    const ticker = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(ticker);
+    gsap.ticker.lagSmoothing(0);
+
+    ScrollTrigger.scrollerProxy(scroller, {
+      scrollTop(value) {
+        if (arguments.length && typeof value === "number") {
+          lenis.scrollTo(value, { immediate: true });
+        }
+        return lenis.animatedScroll;
+      },
+      scrollHeight: () => scroller.scrollHeight,
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+          right: window.innerWidth,
+          bottom: window.innerHeight,
+        };
+      },
+      pinType: scroller.style.transform ? "transform" : "fixed",
+    });
+
+    const onStRefresh = () => {
+      lenis.resize();
+    };
+    ScrollTrigger.addEventListener("refresh", onStRefresh);
+    ScrollTrigger.refresh();
 
     return () => {
-      cancelAnimationFrame(rafId);
-      lenis.off("scroll", syncScrollTrigger);
+      ScrollTrigger.removeEventListener("refresh", onStRefresh);
+      gsap.ticker.remove(ticker);
       lenis.destroy();
+      ScrollTrigger.scrollerProxy(scroller);
+      ScrollTrigger.clearScrollMemory();
+      ScrollTrigger.refresh();
     };
   }, []);
 

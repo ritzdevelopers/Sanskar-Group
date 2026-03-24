@@ -25,9 +25,10 @@ export function FooterSection() {
         }}
       />
 
-      {/* Top Section */}
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-4 py-12 sm:px-6 sm:py-16 md:px-8 md:py-16 lg:px-10 lg:py-20 xl:max-w-[1320px] xl:px-12 2xl:px-16">
-        <div className="flex flex-col gap-10 sm:gap-12 md:flex-row md:flex-wrap md:items-start md:justify-between md:gap-x-8 md:gap-y-10 lg:flex-nowrap lg:items-center lg:gap-8">
+      {/* Top Section — same shell as Hero header: max-w-[1500px] → padding → max-w-[1280px]/[1320px] */}
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-4 py-12 sm:px-6 sm:py-16 md:px-8 md:py-16 lg:px-10 lg:py-20 xl:px-12 2xl:px-16">
+        <div className="mx-auto w-full max-w-[1280px] xl:max-w-[1320px]">
+          <div className="flex flex-col gap-10 sm:gap-12 md:flex-row md:flex-wrap md:items-start md:justify-between md:gap-x-8 md:gap-y-10 lg:flex-nowrap lg:items-center lg:gap-8">
 
           {/* Left: Text and Contact */}
           <div className="flex flex-col items-center gap-8 text-center sm:gap-10 md:w-[min(100%,calc(50%-1rem))] md:items-center lg:w-1/3 lg:items-start lg:gap-12 lg:text-left">
@@ -100,6 +101,7 @@ export function FooterSection() {
               />
             </div>
           </div>
+          </div>
         </div>
       </div>
 
@@ -107,7 +109,8 @@ export function FooterSection() {
       <div className="border-t border-[#EAEAEA]"></div>
 
       {/* Bottom Section */}
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-4 py-12 sm:px-6 sm:py-14 md:px-8 md:py-16 lg:px-10 xl:max-w-[1320px] xl:px-12 2xl:px-16">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-4 py-12 sm:px-6 sm:py-14 md:px-8 md:py-16 lg:px-10 xl:px-12 2xl:px-16">
+        <div className="relative mx-auto w-full max-w-[1280px] xl:max-w-[1320px]">
         {/* WhatsApp Icon positioned absolutely at bottom left of the section */}
         <a
           data-scroll-reveal-pop
@@ -283,14 +286,17 @@ export function FooterSection() {
           </div>
 
         </div>
+        </div>
       </div>
 
       {/* Copyright */}
       <div className="relative z-10 border-t border-[#EAEAEA] py-5 sm:py-6">
-        <div className="mx-auto max-w-[1280px] px-4 text-center sm:px-6 md:px-8 lg:px-10 xl:max-w-[1320px] xl:px-12 2xl:px-16">
+        <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+          <div className="mx-auto w-full max-w-[1280px] text-center xl:max-w-[1320px]">
           <p data-scroll-reveal className="font-lato text-[13px] leading-snug text-[#00000099] sm:text-[14px] md:text-[16px]">
             © 2026 Sanskar Developers. All rights reserved. digital media planned by Ritz Media World
           </p>
+          </div>
         </div>
       </div>
     </footer>
