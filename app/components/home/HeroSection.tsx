@@ -161,7 +161,7 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
       </div>
 
       <header className="fixed inset-x-0 top-0 z-50">
-        <div className="mx-auto w-full max-w-[1500px]">
+        <div className="mx-auto w-full">
           <div
             className={`w-full px-4 pt-[max(14px,env(safe-area-inset-top))] pb-3 transition-all duration-300 sm:px-6 sm:pt-4 sm:pb-3.5 md:px-8 md:pt-5 md:pb-4 lg:px-10 lg:pt-5 lg:pb-4 xl:px-12 2xl:px-16 ${isScrolled ? "bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)]" : "bg-transparent"
               }`}

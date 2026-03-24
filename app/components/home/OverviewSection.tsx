@@ -21,9 +21,9 @@ export function OverviewSection() {
   useScrollReveal(sectionRef);
 
   return (
-    <section ref={sectionRef} className="relative overflow-x-hidden bg-white pt-2 sm:pt-3">
+    <section ref={sectionRef} className="relative w-full min-w-0 overflow-x-hidden bg-white pt-2 sm:pt-3">
       <div className="pointer-events-none absolute inset-0 hidden xl:block">
-        <div className="absolute left-1/2 top-0 flex h-full w-full max-w-[1440px] -translate-x-1/2 justify-center gap-[280px] 2xl:max-w-[1600px]">
+        <div className="absolute inset-x-0 top-0 flex h-full w-full justify-evenly px-6 lg:px-12 xl:px-16 2xl:px-20">
           <span className="h-full w-px shrink-0 bg-[#F1F1F1]" />
           <span className="h-full w-px shrink-0 bg-[#F1F1F1]" />
           <span className="h-full w-px shrink-0 bg-[#F1F1F1]" />
@@ -32,7 +32,7 @@ export function OverviewSection() {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-col items-center gap-6 px-4 py-10 text-center sm:gap-8 sm:px-6 sm:py-12 md:items-start md:gap-8 md:px-8 md:py-14 md:text-left lg:gap-[35px] lg:px-10 lg:py-[56px] xl:min-h-[551px]">
+      <div className="relative z-10 mx-auto flex w-full max-w-none flex-col items-center gap-6 px-4 py-10 text-center sm:gap-8 sm:px-6 sm:py-12 md:items-start md:gap-8 md:px-8 md:py-14 md:text-left lg:gap-[35px] lg:px-12 lg:py-[56px] xl:px-16 xl:min-h-[551px] 2xl:px-20">
         <p
           data-scroll-reveal
           className={`${lato.className} w-full text-sm font-normal leading-7 text-[#111111] uppercase sm:text-[15px] md:text-[16px]`}
