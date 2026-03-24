@@ -17,7 +17,10 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     const lenis = new Lenis({
       duration: 1.1,
       smoothWheel: true,
+      /* Route touch through Lenis on mobile so drags on fixed/pinned layers still scroll the page */
+      syncTouch: true,
       touchMultiplier: 1.2,
+      allowNestedScroll: true,
     });
 
     const scroller = document.documentElement;

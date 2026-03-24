@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { Lato, Quattrocento } from "next/font/google";
 import { useScrollReveal } from "../common/useScrollReveal";
 
@@ -51,8 +51,7 @@ const investCards = [
 export function WhyInvestSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-
-
+  useScrollReveal(sectionRef, { stagger: 0.08, duration: 0.65 });
 
   const scrollNext = () => {
     if (scrollRef.current) {
@@ -102,7 +101,7 @@ export function WhyInvestSection() {
           {investCards.map((card) => (
             <article
               key={card.title}
-              className="shrink-0 snap-start flex h-full w-[280px] sm:w-[300px] md:w-[340px] lg:w-[360px] xl:w-[384px] flex-col items-center rounded-[16px] border-[0.89px] border-[#F3F4F6] bg-[#FFFFFF] p-5 text-center sm:p-6 md:items-stretch md:text-left lg:items-stretch"
+              className="flex w-[280px] shrink-0 snap-start flex-col items-stretch rounded-[16px] border-[0.89px] border-[#F3F4F6] bg-white p-5 text-center sm:w-[300px] sm:p-6 md:w-[340px] md:text-left lg:w-[360px] xl:w-[384px]"
               style={{ boxShadow: "0px 2px 4px -2px #0000001A, 0px 4px 6px -1px #0000001A" }}
             >
               <h3
@@ -117,9 +116,20 @@ export function WhyInvestSection() {
               >
                 {card.description}
               </p>
-
-              <div data-scroll-reveal-img className="relative mt-4 aspect-[333/174] w-full overflow-hidden sm:mt-5">
-                <Image src={card.image} alt={card.title} fill className="object-cover" quality={100} sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 384px" />
+              <div
+                data-scroll-reveal-img
+                className="relative mt-4 aspect-[333/174] w-full min-h-[120px] shrink-0 overflow-hidden  bg-[#F3F4F6] sm:mt-5"
+              >
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  fill
+                  className="object-cover"
+                  quality={90}
+                  sizes="(max-width: 640px) 280px, (max-width: 768px) 300px, 384px"
+                  loading="eager"
+                  unoptimized
+                />
               </div>
             </article>
           ))}
@@ -129,6 +139,7 @@ export function WhyInvestSection() {
           <button
             type="button"
             aria-label="Previous cards"
+            data-scroll-reveal-pop
             onClick={scrollPrev}
             className="flex h-[70px] w-[70px] shrink-0 items-center justify-center rounded-full border border-[#E2E2E2] bg-[#EDEDED]  transition-colors hover:bg-neutral-200"
           >
@@ -137,6 +148,7 @@ export function WhyInvestSection() {
           <button
             type="button"
             aria-label="Next cards"
+            data-scroll-reveal-pop
             onClick={scrollNext}
             className="flex h-[70px] w-[70px] shrink-0 items-center justify-center rounded-full border border-[#E2E2E2] bg-[#EDEDED]  transition-colors hover:bg-neutral-200"
           >

@@ -139,7 +139,21 @@ export function ProjectShowcaseSliderSection() {
     };
     window.addEventListener("resize", onResize, { passive: true });
 
+    /* Pinned layers + full-bleed images steal touches on mobile; allow vertical page scroll everywhere on the viewport */
+    const syncTouchAction = () => {
+      const el = stickyRef.current;
+      if (!el) return;
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        el.style.setProperty("touch-action", "pan-y pinch-zoom", "important");
+      } else {
+        el.style.removeProperty("touch-action");
+      }
+    };
+    ScrollTrigger.addEventListener("refresh", syncTouchAction);
+    requestAnimationFrame(syncTouchAction);
+
     return () => {
+      ScrollTrigger.removeEventListener("refresh", syncTouchAction);
       window.removeEventListener("resize", onResize);
       ctx.revert();
     };
@@ -166,7 +180,7 @@ export function ProjectShowcaseSliderSection() {
           <div
             key={`bg-${slide.id}`}
             ref={(el) => { bgLayersRef.current[index] = el; }}
-            className="absolute inset-0 will-change-transform"
+            className="absolute inset-0 will-change-transform max-md:pointer-events-none max-md:[&_img]:pointer-events-none"
             style={{ zIndex: index + 1 }}
           >
             <Image
@@ -177,6 +191,7 @@ export function ProjectShowcaseSliderSection() {
               quality={100}
               priority={index === 0}
               sizes="100vw"
+              draggable={false}
             />
             {/* Mobile: no full-screen dark wash — only a short scrim at bottom for the card; md+ cinematic gradient */}
             <div
@@ -188,7 +203,7 @@ export function ProjectShowcaseSliderSection() {
 
         {/* ── HEADLINE + SUBTEXT ── */}
         {/* Mobile: top center; md+: left column; lg+: vertically centred */}
-        <div className="absolute z-40 text-left
+        <div className="absolute z-40 text-left max-md:pointer-events-none
           max-md:bottom-auto max-md:left-1/2 max-md:right-auto max-md:top-[max(5.25rem,env(safe-area-inset-top,0px)+4.25rem)] max-md:w-[min(92vw,22rem)] max-md:max-w-none max-md:-translate-x-1/2 max-md:px-2 max-md:text-center max-md:drop-shadow-[0_2px_14px_rgba(0,0,0,0.82)]
           sm:max-md:top-[max(5.5rem,env(safe-area-inset-top,0px)+4.5rem)]
           md:top-auto md:translate-x-0 md:text-left md:bottom-[40%] md:left-10 md:max-w-[42vw]
