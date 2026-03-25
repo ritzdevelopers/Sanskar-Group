@@ -70,8 +70,9 @@ export function WhyInvestSection() {
   };
 
   return (
-    <section id="why-invest" ref={sectionRef} className="bg-[#FFFFFF/95] py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-12">
+    <section id="why-invest" ref={sectionRef} className="bg-white/95 py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24">
+      <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+        <div className="mx-auto w-full max-w-[1280px] xl:max-w-[1320px]">
         <h2
           data-scroll-reveal
           className={`${quattrocento.className} text-center text-[32px] font-[700] leading-[1.1] text-[#111111] sm:text-[38px] md:text-left md:text-[44px] lg:text-[48px] xl:text-[52px] 2xl:text-[56px]`}
@@ -154,6 +155,7 @@ export function WhyInvestSection() {
           >
             <Image src="/assets/right_arrow 2.svg" alt="" width={12} height={20} className="scale-90 sm:scale-100" />
           </button>
+        </div>
         </div>
       </div>
     </section>

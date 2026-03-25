@@ -112,7 +112,8 @@ export function LocationAdvantageSection() {
         style={{ background: "#FFF9E4", filter: "blur(400px)" }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-8 lg:px-10 xl:max-w-[1320px] xl:px-12 2xl:px-16">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+        <div className="mx-auto w-full max-w-[1280px] xl:max-w-[1320px]">
 
         {/* ── Heading ── */}
         <div className="mx-auto mb-10 max-w-[920px] text-center sm:mb-12 md:mb-14 lg:mb-16">
@@ -148,6 +149,7 @@ export function LocationAdvantageSection() {
             ))}
           </div>
 
+        </div>
         </div>
       </div>
     </section>

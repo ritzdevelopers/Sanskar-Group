@@ -56,7 +56,8 @@ export function ProjectsSection() {
   return (
     <section id="projects" ref={sectionRef} className="relative z-10">
       <div className="absolute inset-x-0 top-0 -z-10 h-[637px] bg-[#F8F8F8]" />
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1440px] flex-col items-center px-4 py-10 sm:px-6 sm:py-12 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-4 py-10 sm:px-6 sm:py-12 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+        <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center xl:max-w-[1320px]">
         <div className="flex w-full max-w-[1004px] flex-col items-center gap-5 text-center sm:gap-6 md:gap-[27px]">
           <p
             data-scroll-reveal
@@ -149,6 +150,7 @@ export function ProjectsSection() {
               />
             ))}
           </div>
+        </div>
         </div>
       </div>
     </section>

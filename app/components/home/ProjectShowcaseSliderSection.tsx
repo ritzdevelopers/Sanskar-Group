@@ -172,7 +172,7 @@ export function ProjectShowcaseSliderSection() {
       {/* Sticky viewport pinned by GSAP */}
       <div
         ref={stickyRef}
-        className="relative h-[100dvh] min-h-[100dvh] w-full max-w-none overflow-hidden bg-[#f2f2f2] md:bg-black md:mx-auto md:max-w-[1440px]"
+        className="relative h-[100dvh] min-h-[100dvh] w-full max-w-none overflow-hidden bg-[#f2f2f2] md:bg-black md:mx-auto md:max-w-[1500px]"
       >
 
         {/* ── STACKED BACKGROUND IMAGES (slide bottom-to-top) ── */}

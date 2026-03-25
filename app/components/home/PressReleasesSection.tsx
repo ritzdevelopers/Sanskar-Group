@@ -38,8 +38,9 @@ export function PressReleasesSection() {
   ];
 
   return (
-    <section ref={sectionRef} className="bg-[#FAFAFA] px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-24 lg:py-[100px] xl:px-10 2xl:px-16">
-      <div className="mx-auto w-full max-w-[1280px] xl:max-w-[1320px]">
+    <section ref={sectionRef} className="bg-[#FAFAFA] py-16 sm:py-20 md:py-24 lg:py-[100px]">
+      <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+        <div className="mx-auto w-full max-w-[1280px] xl:max-w-[1320px]">
         <h2
           data-scroll-reveal
           className="mb-10 text-center font-quattrocento text-[28px] font-normal uppercase leading-[100%] tracking-[0%] text-[#1A1A1A] sm:mb-12 sm:text-[32px] md:mb-14 md:text-[34px] lg:mb-[60px] lg:text-[36px]"
@@ -79,6 +80,7 @@ export function PressReleasesSection() {
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </section>

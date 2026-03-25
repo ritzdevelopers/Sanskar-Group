@@ -25,7 +25,8 @@ export function StorySection() {
       className="bg-[radial-gradient(#ebebeb_1.5px,transparent_1.5px)] [background-size:14px_14px] py-10 sm:py-12 md:py-14 md:[background-size:18px_18px] lg:py-20"
     >
       <h2 className="sr-only">Our Story and Impact</h2>
-      <div className="mx-auto flex w-full max-w-[1320px] flex-col gap-10 px-4 sm:gap-12 sm:px-6 md:gap-14 md:px-8 lg:gap-16 lg:px-10 xl:px-12 2xl:px-16">
+      <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-10 sm:gap-12 md:gap-14 lg:gap-16 xl:max-w-[1320px]">
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-center md:gap-8 lg:gap-10 xl:gap-12">
           <div data-scroll-reveal-img className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] md:aspect-auto md:h-[min(420px,48vw)] md:w-1/2 md:min-w-0 md:shrink-0 lg:h-[450px] lg:w-[min(100%,641px)]">
             <Image
@@ -115,6 +116,7 @@ export function StorySection() {
               sizes="(max-width: 1024px) 100vw, 641px"
             />
           </div>
+        </div>
         </div>
       </div>
     </section>

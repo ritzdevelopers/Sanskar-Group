@@ -97,7 +97,8 @@ export function TestimonialsSection() {
 
   return (
     <section ref={sectionRef} className="bg-[#FFFFFF] py-10 sm:py-12 md:py-14">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+      <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
+        <div className="mx-auto w-full max-w-[1280px] xl:max-w-[1320px]">
         <p
           data-scroll-reveal
           className={`${lato.className} text-center text-[15px] font-normal uppercase tracking-[0.08em] text-[#111111] sm:text-[16px] md:text-[18px]`}
@@ -196,6 +197,7 @@ export function TestimonialsSection() {
               </button>
             ))}
           </div>
+        </div>
         </div>
       </div>
     </section>
