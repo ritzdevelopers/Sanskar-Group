@@ -142,7 +142,7 @@ export function WhyInvestSection() {
             aria-label="Previous cards"
             data-scroll-reveal-pop
             onClick={scrollPrev}
-            className="flex h-[70px] w-[70px] shrink-0 items-center justify-center rounded-full border border-[#E2E2E2] bg-[#EDEDED]  transition-colors hover:bg-neutral-200"
+            className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full border border-[#E2E2E2] bg-[#EDEDED]  transition-colors hover:bg-neutral-200"
           >
             <Image src="/assets/left_arrow 2.svg" alt="" width={12} height={20} className="scale-90 sm:scale-100" />
           </button>
@@ -151,7 +151,7 @@ export function WhyInvestSection() {
             aria-label="Next cards"
             data-scroll-reveal-pop
             onClick={scrollNext}
-            className="flex h-[70px] w-[70px] shrink-0 items-center justify-center rounded-full border border-[#E2E2E2] bg-[#EDEDED]  transition-colors hover:bg-neutral-200"
+            className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full border border-[#E2E2E2] bg-[#EDEDED]  transition-colors hover:bg-neutral-200"
           >
             <Image src="/assets/right_arrow 2.svg" alt="" width={12} height={20} className="scale-90 sm:scale-100" />
           </button>
