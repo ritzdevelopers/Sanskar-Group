@@ -27,6 +27,8 @@ const showcaseSlides = [
     ),
     image: "/assets/eternia.webp",
     url: "https://eternia.greatvaluerealty.com/",
+
+    mapUrl: "https://maps.app.goo.gl/2sN8jEspDHpbvyBeA",
   },
   {
     id: 2,
@@ -44,6 +46,7 @@ const showcaseSlides = [
     ),
     image: "/assets/high_life.jpg",
     url: "https://highlife.greatvaluerealty.com/",
+    mapUrl: "https://maps.app.goo.gl/7SfwKnXB2Apoinz17",
   },
   {
     id: 3,
@@ -60,6 +63,7 @@ const showcaseSlides = [
     ),
     image: "/assets/forest_walk 2.png",
     url: "https://theforestwalk.com/",
+    mapUrl: "https://maps.app.goo.gl/ZMaHTrzAVjxL871R7",
   },
 ];
 
@@ -200,27 +204,16 @@ export function ProjectShowcaseSliderSection() {
 
         {/* ── HEADLINE + SUBTEXT ── */}
         {/* Mobile: top center; md+: left column; lg+: vertically centred */}
-        <div className="absolute z-40 text-left max-md:pointer-events-none
-          max-md:bottom-auto max-md:left-1/2 max-md:right-auto max-md:top-[max(5.25rem,env(safe-area-inset-top,0px)+4.25rem)] max-md:w-[min(92vw,22rem)] max-md:max-w-none max-md:-translate-x-1/2 max-md:px-2 max-md:text-center max-md:drop-shadow-[0_2px_14px_rgba(0,0,0,0.82)]
-          sm:max-md:top-[max(5.5rem,env(safe-area-inset-top,0px)+4.5rem)]
-          md:top-auto md:translate-x-0 md:text-left md:bottom-[40%] md:left-10 md:max-w-[42vw]
-          lg:bottom-auto lg:top-1/2 lg:z-50 lg:-translate-y-1/2 lg:left-12 lg:max-w-[40vw]
-          xl:left-14 xl:max-w-[38vw]
-          2xl:left-20 2xl:max-w-[34vw]
-        ">
+        <div className="absolute z-40 text-left max-md:pointer-events-none max-md:bottom-auto max-md:left-1/2 max-md:right-auto max-md:top-[max(5.25rem,env(safe-area-inset-top,0px)+4.25rem)] max-md:w-[min(92vw,22rem)] max-md:max-w-none max-md:-translate-x-1/2 max-md:px-2 max-md:text-center max-md:drop-shadow-[0_2px_14px_rgba(0,0,0,0.82)] sm:max-md:top-[max(5.5rem,env(safe-area-inset-top,0px)+4.5rem)] md:top-auto md:translate-x-0 md:text-left md:bottom-[40%] md:left-10 md:max-w-[42vw] lg:bottom-auto lg:top-1/2 lg:z-50 lg:-translate-y-1/2 lg:left-12 lg:max-w-[40vw] xl:left-14 xl:max-w-[38vw] 2xl:left-20 2xl:max-w-[34vw]">
           <h3
             key={`h-${activeIndex}`}
-            className={`${quattrocento.className} animate-fadeSlideUp font-bold leading-[1.15] text-white
-              text-[16px] sm:text-[20px] md:text-[27px] lg:text-[32px] xl:text-[36px] xl:leading-[1.1] 2xl:text-[42px]
-            `}
+            className={`${quattrocento.className} animate-fadeSlideUp font-bold leading-[1.15] text-white text-[16px] sm:text-[20px] md:text-[27px] lg:text-[32px] xl:text-[36px] xl:leading-[1.1] 2xl:text-[42px]`}
           >
             {activeSlide.headline}
           </h3>
           <p
             key={`p-${activeIndex}`}
-            className={`${lato.className} animate-fadeSlideUp mt-1 leading-snug text-white/80
-              text-[11px] sm:text-[13px] md:text-[16px] xl:text-[18px] 2xl:text-[20px]
-            `}
+            className={`${lato.className} animate-fadeSlideUp mt-1 leading-snug text-white/80 text-[11px] sm:text-[13px] md:text-[16px] xl:text-[18px] 2xl:text-[20px]`}
             style={{ animationDelay: "80ms" }}
           >
             {activeSlide.subtext}
@@ -240,40 +233,51 @@ export function ProjectShowcaseSliderSection() {
         {/* ── FLOATING INFO CARD ── */}
         {/* Mobile: compact card anchored bottom-right */}
         {/* lg+: vertically centred on the right */}
-        <div className="absolute z-50
-          inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom,0px))] w-auto max-w-none
-          sm:inset-x-4 sm:bottom-[max(1.25rem,env(safe-area-inset-bottom,0px))]
-          md:inset-x-auto md:bottom-auto md:left-auto md:right-8 md:top-[calc(50%+1.25rem)] md:w-[min(310px,38vw)] md:-translate-y-1/2
-          lg:top-[calc(50%+1.5rem)] lg:right-10 lg:w-[min(360px,34vw)]
-          xl:top-[calc(50%+1.75rem)] xl:right-[min(80px,6vw)] xl:w-[min(380px,32vw)]
-          2xl:top-[calc(50%+2rem)] 2xl:right-[min(100px,7vw)]
-        ">
-          <div className="mx-auto flex w-full max-w-[400px] flex-col rounded-[12px] bg-[#F4F4F4] shadow-2xl
-            min-h-[min(52dvh,480px)] gap-3 px-4 pb-4 pt-2
-            sm:min-h-[min(50dvh,460px)] sm:max-w-[420px] sm:gap-3.5 sm:px-4 sm:pb-5 sm:pt-2.5
-            md:mx-0 md:min-h-0 md:max-w-none md:gap-3 md:rounded-[14px] md:px-5 md:py-6
-            lg:gap-4 lg:px-6 lg:py-8
-            xl:px-8 xl:py-[52px]
-          ">
+        <div className="absolute z-50 inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom,0px))] w-auto max-w-none sm:inset-x-4 sm:bottom-[max(1.25rem,env(safe-area-inset-bottom,0px))] md:inset-x-auto md:bottom-auto md:left-auto md:right-8 md:top-[calc(50%+1.25rem)] md:w-[min(310px,38vw)] md:-translate-y-1/2 lg:top-[calc(50%+1.5rem)] lg:right-10 lg:w-[min(360px,34vw)] xl:top-[calc(50%+1.75rem)] xl:right-[min(80px,6vw)] xl:w-[min(380px,32vw)] 2xl:top-[calc(50%+2rem)] 2xl:right-[min(100px,7vw)]">
+          <div className="mx-auto flex w-full max-w-[400px] flex-col rounded-[12px] bg-[#F4F4F4] shadow-2xl min-h-[min(52dvh,480px)] gap-3 px-4 pb-4 pt-2 sm:min-h-[min(50dvh,460px)] sm:max-w-[420px] sm:gap-3.5 sm:px-4 sm:pb-5 sm:pt-2.5 md:mx-0 md:min-h-0 md:max-w-none md:gap-3 md:rounded-[14px] md:px-5 md:py-6 lg:gap-4 lg:px-6 lg:py-8 xl:px-8 xl:py-[52px]">
 
             {/* Counter + title — pinned to top of card on mobile */}
             <div className="flex shrink-0 flex-col items-center gap-1.5 pt-0.5 md:gap-2 md:pt-0">
-            <p className={`${lato.className} text-center font-normal leading-none text-[#2F2F2F]
-              text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[16px]
-            `}>
-              {String(activeIndex + 1).padStart(2, "0")} — {String(showcaseSlides.length).padStart(2, "0")}
-            </p>
+              <p className={`${lato.className} text-center font-normal leading-none text-[#2F2F2F] text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[16px]`}>
+                {String(activeIndex + 1).padStart(2, "0")} — {String(showcaseSlides.length).padStart(2, "0")}
+              </p>
 
-            <h4 className={`${quattrocento.className} text-center font-normal uppercase tracking-wider leading-[1.1] text-[#1A1A1A]
-              text-[15px] sm:text-[16px] md:text-[17px] lg:text-[19px] xl:text-[21px] 2xl:text-[24px]
-            `}>
-              {activeSlide.projectName}
-            </h4>
+              {/* Project name — clicking opens Google Maps location */}
+              <a
+                href={activeSlide.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${activeSlide.projectName} on Google Maps`}
+                className="group flex items-center gap-1.5"
+              >
+                <h4 className={`${quattrocento.className} text-center font-normal uppercase tracking-wider leading-[1.1] text-[#1A1A1A] transition-colors group-hover:text-[#C9A227] text-[15px] sm:text-[16px] md:text-[17px] lg:text-[19px] xl:text-[21px] 2xl:text-[24px]`}>
+                  {activeSlide.projectName}
+                </h4>
+                {/* Map-pin icon */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="shrink-0 text-[#C9A227] transition-transform duration-300 group-hover:scale-125 h-[12px] w-[12px] sm:h-[13px] sm:w-[13px] md:h-[14px] md:w-[14px] lg:h-[15px] lg:w-[15px]"
+                  aria-hidden
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-2.013 3.5-4.751 3.5-8.136a6.79 6.79 0 00-13.58 0c0 3.385 1.555 6.123 3.5 8.136a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </a>
             </div>
 
-            {/* Thumbnail */}
-            <div className="relative h-[132px] w-full shrink-0 overflow-hidden rounded-[6px] sm:h-[148px] md:h-[135px] lg:h-[155px] xl:h-[175px] [contain:paint]
-            ">
+            {/* Thumbnail — also links to map */}
+            <a
+              href={activeSlide.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${activeSlide.projectName} location on Google Maps`}
+              className="group relative block h-[132px] w-full shrink-0 overflow-hidden rounded-[6px] sm:h-[148px] md:h-[135px] lg:h-[155px] xl:h-[175px] [contain:paint]"
+            >
               {showcaseSlides.map((slide, index) => (
                 <div
                   key={`thumb-${slide.id}`}
@@ -285,19 +289,25 @@ export function ProjectShowcaseSliderSection() {
                     src={slide.image}
                     alt={slide.projectName}
                     fill
-                    className="object-cover object-center [transform:translateZ(0)]"
+                    className="object-cover object-center [transform:translateZ(0)] transition-transform duration-500 group-hover:scale-105"
                     quality={80}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 310px, 380px"
                   />
                 </div>
               ))}
-            </div>
+              {/* Hover overlay with map hint */}
+              <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/30" aria-hidden>
+                <span className="flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#1A1A1A] opacity-0 shadow transition-opacity duration-300 group-hover:opacity-100">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3 text-[#C9A227]" aria-hidden>
+                    <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-2.013 3.5-4.751 3.5-8.136a6.79 6.79 0 00-13.58 0c0 3.385 1.555 6.123 3.5 8.136a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+                  </svg>
+                  View on Map
+                </span>
+              </div>
+            </a>
 
             {/* Description — fills remaining card height on mobile */}
-            <p className={`${lato.className} flex-1 text-center leading-[1.55] text-[#555555]
-              min-h-0 overflow-y-auto overscroll-y-contain text-[11px] sm:text-[12px]
-              md:flex-none md:overflow-visible md:text-[11px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]
-            `}>
+            <p className={`${lato.className} flex-1 text-center leading-[1.55] text-[#555555] min-h-0 overflow-y-auto overscroll-y-contain text-[11px] sm:text-[12px] md:flex-none md:overflow-visible md:text-[11px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]`}>
               {activeSlide.description}
             </p>
 
@@ -306,11 +316,7 @@ export function ProjectShowcaseSliderSection() {
               href={activeSlide.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group mx-auto mt-auto flex shrink-0 items-center justify-center rounded-full pt-1
-                border border-[#8C8C8C] transition-all duration-300
-                hover:border-[#111] hover:bg-[#111]
-                h-9 w-9 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 xl:h-[48px] xl:w-[48px]
-              "
+              className="group mx-auto mt-auto flex shrink-0 items-center justify-center rounded-full pt-1 border border-[#8C8C8C] transition-all duration-300 hover:border-[#111] hover:bg-[#111] h-9 w-9 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 xl:h-[48px] xl:w-[48px]"
               aria-label={`View ${activeSlide.projectName} project`}
             >
               <Image

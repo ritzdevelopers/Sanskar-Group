@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 import { Lato, Quattrocento } from "next/font/google";
 import { useScrollReveal } from "../common/useScrollReveal";
@@ -8,148 +9,210 @@ import { useScrollReveal } from "../common/useScrollReveal";
 const lato = Lato({ subsets: ["latin"], weight: ["400", "700"] });
 const quattrocento = Quattrocento({ subsets: ["latin"], weight: ["400", "700"] });
 
-type LocationItem = {
-  id: string;
-  image: string;
+const MAP_SRC = "/assets/City%20Map%20Infrastructure.png";
 
-  title: string;
+/** Public assets with spaces — encoded for reliable loading */
+const icon = (n: 1 | 2 | 3 | 4) => `/assets/Icon%20(${n}).svg`;
 
-  detail: string;
-
-  w: number;
-
-  h: number;
-};
-
-const leftColumn: LocationItem[] = [
+const features = [
   {
-    id: "metro",
-    image: "/assets/Rectangle 45088.png",
-    title: "Metro",
-    detail: "Aqua Line & proposed metro extension within 8–10 mins",
-    w: 522,
-    h: 365,
+    id: "institutions",
+    icon: icon(1),
+    iconW: 22,
+    iconH: 20,
+    title: "Elite Institutions",
+    description:
+      "Walk to world-class educational centers and heritage libraries.",
   },
   {
-    id: "highways",
-    image: "/assets/Rectangle 45210 (1).png",
-    title: "Highways",
-    detail: "NH-24, Noida Expressway & FNG all within easy reach",
-    w: 451,
-    h: 379,
-  },
-];
-
-const rightColumn: LocationItem[] = [
-  {
-    id: "amenities",
-    image: "/assets/Rectangle 45210.png",
-    title: "Schools, Hospitals & Malls",
-    detail: "Yatharth Hospital (1.2 km), top schools nearby & Gaur City Mall (8 km)",
-    w: 451,
-    h: 536,
+    id: "landmarks",
+    icon: icon(2),
+    iconW: 22,
+    iconH: 22,
+    title: "Iconic Landmarks",
+    description:
+      "A stone's throw from the city's most photographed historical architecture.",
   },
   {
-    id: "lifestyle",
-    image: "/assets/Rectangle 45210 (2).png",
-    title: "Dining & Entertainment",
-    detail: "Gaur City Mall, Barbeque Nation, Punjab Grill & D-Mart within 15 mins",
-    w: 576,
-    h: 576,
+    id: "shopping",
+    icon: icon(4),
+    iconW: 18,
+    iconH: 22,
+    title: "Premier Shopping",
+    description:
+      "High-end boutiques and artisanal galleries define your neighborhood.",
   },
-];
+  {
+    id: "hubs",
+    icon: icon(3),
+    iconW: 22,
+    iconH: 22,
+    title: "International Hubs",
+    description:
+      "Strategic proximity to the international airport and diplomatic zones.",
+  },
+] as const;
 
-function LocationCard({ item, sizes }: { item: LocationItem; sizes: string }) {
+/** Decorative map pins */
+const mapPins = [
+  { left: "58%", top: "34%" },
+  { left: "44%", top: "52%" },
+] as const;
+
+function MapPin() {
   return (
-    <article className="flex flex-col gap-3 sm:gap-4">
-      {/* Image */}
-      <div
-        data-scroll-reveal-img
-        className="relative w-full overflow-hidden"
-        style={{ aspectRatio: `${item.w} / ${item.h}` }}
-      >
-        <Image
-          src={item.image}
-          alt={`${item.title} — ${item.detail}`}
-          fill
-          className="object-cover transition-transform duration-700 hover:scale-[1.03]"
-          sizes={sizes}
-          quality={90}
-        />
-      </div>
-
-      {/* Caption */}
-      <p
-        data-scroll-reveal
-        className={`${lato.className} text-left text-[13px] leading-[1.6] text-[#1A1A1A] sm:text-[14px] md:text-[15px] lg:text-[16px]`}
-      >
-        <span className="font-bold">{item.title} — </span>
-        <span className="font-normal">{item.detail}</span>
-      </p>
-    </article>
+    <span className="relative flex h-4 w-4 items-center justify-center">
+      <span
+        className="absolute h-[22px] w-[22px] rounded-full bg-[#F7A51D]/25"
+        aria-hidden
+      />
+      <span
+        className="relative z-[1] h-2 w-2 rounded-full bg-[#C9A227] shadow-sm ring-2 ring-white/90"
+        aria-hidden
+      />
+    </span>
   );
 }
 
 export function LocationAdvantageSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  useScrollReveal(sectionRef, { stagger: 0.08, duration: 0.6 });
-
-  const sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 46vw, 500px";
+  useScrollReveal(sectionRef, { stagger: 0.06, duration: 0.55 });
 
   return (
     <section
       id="location-advantage"
       ref={sectionRef}
-      className="relative overflow-hidden py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24"
-      style={{
-        background:
-          "radial-gradient(120% 100% at 0% 0%, #FEFCF8 0%, #F5F5F5 100%)",
-      }}
+      className="relative w-full overflow-hidden"
     >
-      {/* Soft glow */}
-      <div
-        className="pointer-events-none absolute right-[-100px] top-[-160px] z-0 h-[720px] w-[720px] rounded-full opacity-70"
-        style={{ background: "#FFF9E4", filter: "blur(400px)" }}
-      />
+      {/* ── Header strip ─────────────────────────────────────────── */}
+      <div className="flex w-full items-center gap-10 border-b border-[#E5E2DC] bg-white px-6 py-6 sm:px-10 md:px-16 lg:px-20 xl:px-24">
+        <h2
+          data-scroll-reveal
+          className={`${quattrocento.className} shrink-0 text-[22px] font-normal leading-snug tracking-[0.01em] text-[#1A1A1A] sm:text-[26px] md:text-[30px] lg:text-[34px]`}
+        >
+          Location Advantage
+        </h2>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
-        <div className="mx-auto w-full max-w-[1280px] xl:max-w-[1320px]">
+        {/* Vertical divider */}
+        <div className="hidden h-10 w-px shrink-0 bg-[#D0CCC4] sm:block" />
 
-        {/* ── Heading ── */}
-        <div className="mx-auto mb-10 max-w-[920px] text-center sm:mb-12 md:mb-14 lg:mb-16">
-          <h2
-            data-scroll-reveal
-            className={`${quattrocento.className} text-[24px] font-bold uppercase leading-[1.2] tracking-[0.02em] text-[#1A1A1A] sm:text-[28px] md:text-[32px] lg:text-[36px] xl:text-[38px]`}
-          >
-            Location Advantage
-          </h2>
-          <p
-            data-scroll-reveal
-            className={`${lato.className} mx-auto mt-3 max-w-[780px] px-1 text-center text-[13px] font-normal leading-[1.65] text-[#555555] sm:mt-4 sm:text-[15px] md:mt-5 md:text-[16px] lg:px-0`}
-          >
-            Where lifestyle destinations, urban convenience, and seamless
-            connectivity come together in one address.
-          </p>
+        {/* Descriptor */}
+        <p
+          data-scroll-reveal
+          className={`${lato.className} hidden text-[13px] font-normal leading-[1.65] text-[#6B6B6B] sm:block sm:max-w-[460px] md:text-[14px] lg:text-[15px]`}
+        >
+          Seamlessly Linked To Essentials, Lifestyle, And Opportunities, A
+          Thriving Hub Where Families, Jobs, And Businesses Converge.
+        </p>
+      </div>
+
+      {/* ── Map + floating card ───────────────────────────────────── */}
+      <div className="relative min-h-[560px] w-full md:h-[78vh] lg:h-[82vh]">
+        {/* Full-bleed map */}
+        <div className="absolute inset-0">
+          <Image
+            src={MAP_SRC}
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            quality={90}
+            priority={false}
+          />
         </div>
 
-        {/* ── Two-column masonry grid ── */}
-        <div className="flex flex-col gap-8 sm:gap-10 md:flex-row md:items-start md:gap-x-6 lg:gap-x-10 xl:gap-x-14">
-
-          {/* Left column */}
-          <div className="flex min-w-0 flex-1 flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-14 xl:gap-16">
-            {leftColumn.map((item) => (
-              <LocationCard key={item.id} item={item} sizes={sizes} />
-            ))}
-          </div>
-
-          {/* Right column — staggered down so images read as a masonry offset */}
-          <div className="flex min-w-0 flex-1 flex-col gap-8 sm:gap-10 md:gap-12 md:pt-16 lg:gap-14 lg:pt-20 xl:gap-16 xl:pt-24 2xl:pt-28">
-            {rightColumn.map((item) => (
-              <LocationCard key={item.id} item={item} sizes={sizes} />
-            ))}
-          </div>
-
+        {/* Map markers */}
+        <div className="pointer-events-none absolute inset-0 z-[1]" aria-hidden>
+          {mapPins.map((pos, i) => (
+            <div
+              key={i}
+              className="absolute -translate-x-1/2 -translate-y-1/2"
+              style={{ left: pos.left, top: pos.top }}
+            >
+              <MapPin />
+            </div>
+          ))}
         </div>
+
+        {/* Floating card */}
+        <div className="relative z-10 flex h-full w-full items-stretch justify-start">
+          <div
+            data-scroll-reveal
+            className="
+              flex flex-col justify-between
+              bg-[#F2F0EB]
+              rounded-2xl shadow-[0_24px_64px_rgba(0,0,0,0.12)]
+              /* mobile: centered, takes most width */
+              mx-auto mt-6 mb-6 w-[min(88%,380px)]
+              px-8 py-10
+              /* desktop: pinned left, fills height */
+              md:mx-0 md:my-8 md:ml-14 md:w-[360px] md:rounded-2xl md:px-10 md:py-10
+              lg:ml-20 lg:w-[400px] lg:px-12 lg:py-12
+            "
+          >
+            {/* Heading */}
+            <div>
+              <h3
+                className={`${quattrocento.className} text-[32px] font-normal leading-[1.15] tracking-[0.01em] text-[#1A1A1A]
+                  sm:text-[36px] md:text-[38px] lg:text-[42px]`}
+              >
+                In the Heart of
+                <br />
+                Luxury
+              </h3>
+
+              {/* Feature list */}
+              <ul className="mt-8 flex flex-col gap-7 md:mt-9 md:gap-7 lg:gap-8">
+                {features.map((item) => (
+                  <li key={item.id} className="flex items-start gap-5" data-scroll-reveal>
+                    {/* Icon — bare, no background circle */}
+                    <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center">
+                      <Image
+                        src={item.icon}
+                        alt=""
+                        width={item.iconW}
+                        height={item.iconH}
+                        className="object-contain"
+                      />
+                    </div>
+                    {/* Text */}
+                    <div className="min-w-0">
+                      <p
+                        className={`${quattrocento.className} text-[15px] font-bold leading-snug text-[#1A1A1A] md:text-[16px]`}
+                      >
+                        {item.title}
+                      </p>
+                      <p
+                        className={`${lato.className} mt-1 text-[12px] font-normal leading-[1.6] text-[#6B6B6B] md:text-[13px]`}
+                      >
+                        {item.description}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* CTA — full-width underline below text */}
+            <div className="mt-10 md:mt-10">
+              <Link
+                href="/#projects"
+                className={`${lato.className} group flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.16em] text-[#1A1A1A] transition-colors hover:text-[#555] sm:text-[11px]`}
+                data-scroll-reveal
+              >
+                <span>Explore the neighborhood</span>
+                <Image
+                  src="/assets/right_arrow.svg"
+                  alt=""
+                  width={12}
+                  height={18}
+                  className="opacity-90 transition-transform duration-300 group-hover:translate-x-0.5"
+                />
+              </Link>
+              {/* Full-width underline */}
+              <div className="mt-2 h-px w-full bg-[#1A1A1A]/20" />
+            </div>
+          </div>
         </div>
       </div>
     </section>

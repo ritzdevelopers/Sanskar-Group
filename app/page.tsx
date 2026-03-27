@@ -9,6 +9,7 @@ import { TestimonialsSection } from "./components/home/TestimonialsSection";
 import { PressReleasesSection } from "./components/home/PressReleasesSection";
 import { FooterSection } from "./components/home/FooterSection";
 import { HomePageWithGateway } from "./components/common/HomePageWithGateway";
+import { ProjectShowcaseSliderSection2 } from "./components/home/ProjectShowCaseSliderSection2";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -36,8 +37,9 @@ export default function Home() {
         <StorySection />
         <WhyInvestSection />
         <ProjectShowcaseSliderSection />
-        <LocationAdvantageSection />
+        {/* <LocationAdvantageSection /> */}
         <TestimonialsSection />
+        <ProjectShowcaseSliderSection2 />
         <PressReleasesSection />
         <FooterSection />
       </HomePageWithGateway>
