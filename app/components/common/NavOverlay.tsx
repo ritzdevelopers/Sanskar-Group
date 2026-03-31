@@ -14,7 +14,7 @@ const NAV_LINKS = [
   { label: "Home", href: "#" },
   {
     label: "About Us",
-    href: "#",
+    href: "/about-us",
     sub: [
       "OUR PROFILE",
       "OUR STORY",

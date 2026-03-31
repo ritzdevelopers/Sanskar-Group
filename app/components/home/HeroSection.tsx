@@ -3,6 +3,7 @@
 import { gsap } from "gsap";
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { NavOverlay } from "../common/NavOverlay";
 
 type HeroSectionProps = {
@@ -192,15 +193,14 @@ export function HeroSection({ startIntroAnimation = false }: HeroSectionProps) {
                 }}
                 className="hidden md:block"
               >
-                <button
-                  type="button"
-                  onClick={() => document.getElementById('why-invest')?.scrollIntoView({ behavior: 'smooth' })}
+                <Link
+                  href="/about-us"
                   className={`group relative text-center text-sm font-medium leading-7 transition-colors duration-300 md:text-[15px] lg:text-[16px] cursor-pointer ${isScrolled ? "text-black" : "text-white"
                     }`}
                 >
                   Our Story
                   <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#F5AC00] transition-all duration-300 group-hover:w-full"></span>
-                </button>
+                </Link>
               </div>
               <div
                 ref={(el) => {
