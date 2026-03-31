@@ -3,6 +3,7 @@ import { FooterSection } from "../components/home/FooterSection";
 import { AboutHeroSection } from "../components/about/AboutHeroSection";
 import { WhoWeAre } from "../components/about/WhoWeAre";
 import { AboutSanskarGroup } from "../components/about/AboutSanskarGroup";
+import { OurJourney } from "../components/about/OurJourney";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function AboutUsPage() {
 
       <AboutSanskarGroup />
       <WhoWeAre />
+      <OurJourney />
       <FooterSection />
     </main>
   );
